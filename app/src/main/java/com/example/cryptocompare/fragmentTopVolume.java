@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class fragmentTopVolume extends Fragment {
     private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e3b6958d1620e17445";
-    BtcEthResults btcEthResults;
+    private BtcEthResults btcEthResults;
     public fragmentTopVolume() {
     }
         @Override
@@ -40,7 +40,6 @@ public class fragmentTopVolume extends Fragment {
 
                 }
             });
-
 
      return v;
     }

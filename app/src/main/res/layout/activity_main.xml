@@ -5,38 +5,124 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
-    <TextView
-        android:id="@+id/following"
-        android:layout_width="169dp"
-        android:layout_height="49dp"
-        android:text="Following"
-        android:textSize="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/top_volume"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/top_volume"
-        android:layout_width="231dp"
-        android:layout_height="46dp"
-        android:text="Top Volume"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/following"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayoutsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/insertfragment"
-        app:layout_constraintTop_toBottomOf="@+id/top_volume"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/downsearchview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
+            app:layout_constraintLeft_toLeftOf="@+id/constraintlayoutsearch"
+            app:layout_constraintRight_toLeftOf="@+id/searchBar"
+            />
+        <EditText
+            android:id="@+id/searchBar"
+            android:textSize="30dp"
+            android:text="Dont search here!.."
+            android:textColor="@color/colorGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
+            app:layout_constraintLeft_toRightOf="@+id/imageView1"
+            app:layout_constraintRight_toLeftOf="@+id/usdTag"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
+            />
+        <TextView
+            android:id="@+id/usdTag"
+            android:text="USD"
+            android:textSize="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
+            app:layout_constraintLeft_toRightOf="@+id/searchBar"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
+            app:layout_constraintRight_toRightOf="@+id/constraintlayoutsearch"
+            />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/downsearchview"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorGrey"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutsearch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/downsearchview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/viewdownfollowing"
+        android:id="@+id/constraintlayoutFollowing">
+        <Button
+            android:id="@+id/following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Following"
+            android:textSize="20dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintop_toTopOf="@+id/constraintlayoutFollowing"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
+            app:layout_constraintLeft_toLeftOf="@id/constraintlayoutFollowing"
+            app:layout_constraintRight_toLeftOf="@+id/top_volume"
+            />
+
+        <Button
+            android:id="@+id/top_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Volume"
+            android:textSize="20dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintLeft_toRightOf="@+id/following"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutFollowing"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewdownfollowing"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorGrey"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutFollowing"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/insertFragmentHere"
+        android:layout_width="match_parent"
+        android:layout_height="520sp"
+        app:layout_constraintTop_toBottomOf="@+id/viewdownfollowing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
