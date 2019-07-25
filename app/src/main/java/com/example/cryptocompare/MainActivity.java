@@ -10,10 +10,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
+    Button following,topVolume;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        topVolume=findViewById(R.id.top_volume);
+        following=findViewById(R.id.following);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -46,8 +52,41 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction
-                .replace(R.id.insertFragmentHere,new fragmentTopVolume())
+                .replace(R.id.insertFragmentHere,new FragmentFollowing())
                  .commit();
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              following.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+              following.setTextColor(getResources().getColor(R.color.colorWhite));
+                topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
+
+
+                FragmentManager fragmentManager=getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction
+                        .replace(R.id.insertFragmentHere,new FragmentFollowing())
+                        .commit();
+            }
+        });
+        topVolume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                following.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                following.setTextColor(getResources().getColor(R.color.colorBlack));
+                topVolume.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                topVolume.setTextColor(getResources().getColor(R.color.colorWhite));
+
+
+                FragmentManager fragmentManager=getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction
+                        .replace(R.id.insertFragmentHere,new FragmentTopVolume())
+                        .commit();
+            }
+        });
     }
 
 }

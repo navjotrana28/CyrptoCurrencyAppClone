@@ -1,4 +1,4 @@
-package com.example.cryptocompare;
+package com.example.cryptocompare.apiCallAndResponse.Api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

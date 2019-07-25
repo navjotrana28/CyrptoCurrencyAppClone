@@ -1,7 +1,5 @@
 package com.example.cryptocompare;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,35 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class fragmentTopVolume extends Fragment {
-    private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e3b6958d1620e17445";
-    private BtcEthResults btcEthResults;
-    public fragmentTopVolume() {
+public class FragmentFollowing extends Fragment {
+    public FragmentFollowing() {
     }
         @Override
         public View onCreateView (LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState){
             // Inflate the layout for this fragment
            View v= inflater.inflate(R.layout.fragment_top__volume, container, false);
-         ServiceRetrofit apiService=ClientRetrofit.getClient().create(ServiceRetrofit.class);
-            Call<BtcEthResults>call =apiService.getCoinSymbols(API);
-            Log.d("datacome","data is not coming");
-            call.enqueue(new Callback<BtcEthResults>() {
-                @Override
-                public void onResponse(Call<BtcEthResults> call, Response<BtcEthResults> response) {
-                     btcEthResults =response.body();
-                    Log.d("apicall",btcEthResults.getBTC().toString());
-                }
 
-                @Override
-                public void onFailure(Call<BtcEthResults> call, Throwable t) {
-
-                }
-            });
 
      return v;
     }
