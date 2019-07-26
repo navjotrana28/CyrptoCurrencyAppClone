@@ -55,7 +55,6 @@ private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e
               @Override
               public void onResponse(Call<Example> call, Response<Example> response) {
                   Example example=response.body();
-                  Log.d("coinData", String.valueOf(example.getData().size()));
                  datumList.addAll(example.getData());
                   Log.d("coinData", String.valueOf(example.getData()));
 
@@ -74,9 +73,6 @@ private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e
       }
         return v;
     }
-
-
-
 
 //    public interface OnFragmentInteractionListener {
 //        void onFragmentInteraction(Uri uri);

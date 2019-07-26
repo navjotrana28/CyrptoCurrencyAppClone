@@ -44,14 +44,25 @@ android:layout_marginLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         />
     <TextView
+        android:id="@+id/total_volume_prize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2845.57"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/prize_of_coin"
+        />
+    <TextView
         android:id="@+id/prize_of_coin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10088.7"
-        android:textSize="14dp"
+        android:textSize="12dp"
         android:textColor="@color/colorBlack"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_volume_prize"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
