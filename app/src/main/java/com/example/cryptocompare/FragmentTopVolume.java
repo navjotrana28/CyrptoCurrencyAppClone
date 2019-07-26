@@ -29,7 +29,6 @@ RecyclerView recyclerView;
 TopVolumeAdapter topVolumeAdapter;
 GridLayoutManager layoutManager;
 private static  List<Datum> datumList=new ArrayList<>();
-private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e3b6958d1620e17445";
 
 
     public FragmentTopVolume() {
@@ -48,29 +47,20 @@ private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e
          recyclerView.setAdapter(topVolumeAdapter);
          topVolumeAdapter.notifyDataSetChanged();
 
-      try{
-          ServiceRetrofit apiService= ClientRetrofit.getClient().create(ServiceRetrofit.class);
-          Call<Example> call =apiService.getTopVolumeData(API);
-          call.enqueue(new Callback<Example>() {
-              @Override
-              public void onResponse(Call<Example> call, Response<Example> response) {
-                  Example example=response.body();
-                 datumList.addAll(example.getData());
-                  Log.d("coinData", String.valueOf(example.getData()));
+         ClientRetrofit clientRetrofit = new ClientRetrofit();
+         clientRetrofit.loadJSON(new interfaceCallback(){
+             @Override
+             public void onSuccess(Example example) {
+                datumList.addAll(example.getData());
+                 topVolumeAdapter.notifyDataSetChanged();
 
-                  topVolumeAdapter.notifyDataSetChanged();
-              }
+             }
+             @Override
+             public void onFailure(Throwable e) {
+             }
+         });
 
-              @Override
-              public void onFailure(Call<Example> call, Throwable t) {
-                  Toast.makeText(getActivity(),"Error Fetching Data", Toast.LENGTH_SHORT).show();
-                  t.printStackTrace();
-              }
-          });
-      }catch (Exception e){
-          Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
 
-      }
         return v;
     }
 

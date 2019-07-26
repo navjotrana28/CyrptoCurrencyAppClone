@@ -2,6 +2,8 @@ package com.example.cryptocompare;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.PicassoProvider;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyViewHolder> {
@@ -24,7 +28,7 @@ public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyV
   public TopVolumeAdapter(Context context,List<Datum> wholeData)
   {
       mcontext=context;
-      datumList=wholeData;
+      datumList= wholeData;
   }
     @NonNull
     @Override
@@ -75,6 +79,7 @@ public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyV
                   int pos=getAdapterPosition();
                   Toast.makeText(view.getContext(),"youclicked"+pos,Toast.LENGTH_SHORT).show();
                   Intent intent = new Intent(mcontext,DetailedCoinData.class);
+                  intent.putExtra("coin_data",  datumList.get(pos));
                   mcontext.startActivity(intent);
               }
           });

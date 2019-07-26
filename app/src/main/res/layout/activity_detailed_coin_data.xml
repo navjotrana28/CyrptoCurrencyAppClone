@@ -46,6 +46,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/detail_graph_bar"
+        android:layout_marginTop="30dp"
         >
         <ImageView
             android:id="@+id/detail_coin_symbol_image"
@@ -100,7 +101,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:id="@+id/detail_graph_bar"
         app:layout_constraintTop_toBottomOf="@+id/detail_constraint_follow"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -1,8 +1,11 @@
 package com.example.cryptocompare.apiCallAndResponse;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum {
+public class Datum implements Parcelable {
 
     @SerializedName("CoinInfo")
     @Expose
@@ -38,4 +41,36 @@ public class Datum {
         this.dISPLAY = dISPLAY;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.coinInfo, flags);
+        dest.writeParcelable( this.rAW, flags);
+        dest.writeParcelable( this.dISPLAY, flags);
+    }
+
+    public Datum() {
+    }
+
+    protected Datum(Parcel in) {
+        this.coinInfo = in.readParcelable(CoinInfo.class.getClassLoader());
+        this.rAW = in.readParcelable(RAW.class.getClassLoader());
+        this.dISPLAY = in.readParcelable(DISPLAY.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Datum> CREATOR = new Parcelable.Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel source) {
+            return new Datum(source);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 }

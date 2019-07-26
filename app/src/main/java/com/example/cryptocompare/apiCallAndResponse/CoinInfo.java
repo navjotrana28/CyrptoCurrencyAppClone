@@ -1,8 +1,11 @@
 package com.example.cryptocompare.apiCallAndResponse;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CoinInfo {
+public class CoinInfo implements Parcelable {
 
     @SerializedName("Id")
     @Expose
@@ -159,4 +162,58 @@ public class CoinInfo {
         this.documentType = documentType;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.fullName);
+        dest.writeString(this.internal);
+        dest.writeString(this.imageUrl);
+        dest.writeString(this.url);
+        dest.writeString(this.algorithm);
+        dest.writeString(this.proofType);
+        dest.writeValue(this.netHashesPerSecond);
+        dest.writeValue(this.blockNumber);
+        dest.writeValue(this.blockTime);
+        dest.writeValue(this.blockReward);
+        dest.writeValue(this.type);
+        dest.writeString(this.documentType);
+    }
+
+    public CoinInfo() {
+    }
+
+    protected CoinInfo(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.fullName = in.readString();
+        this.internal = in.readString();
+        this.imageUrl = in.readString();
+        this.url = in.readString();
+        this.algorithm = in.readString();
+        this.proofType = in.readString();
+        this.netHashesPerSecond = (Double) in.readValue(Double.class.getClassLoader());
+        this.blockNumber = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.blockTime = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.blockReward = (Double) in.readValue(Double.class.getClassLoader());
+        this.type = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.documentType = in.readString();
+    }
+
+    public static final Parcelable.Creator<CoinInfo> CREATOR = new Parcelable.Creator<CoinInfo>() {
+        @Override
+        public CoinInfo createFromParcel(Parcel source) {
+            return new CoinInfo(source);
+        }
+
+        @Override
+        public CoinInfo[] newArray(int size) {
+            return new CoinInfo[size];
+        }
+    };
 }

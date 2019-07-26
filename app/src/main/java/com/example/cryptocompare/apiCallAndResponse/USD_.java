@@ -1,8 +1,11 @@
 package com.example.cryptocompare.apiCallAndResponse;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class USD_ {
+public class USD_ implements Parcelable {
 
     @SerializedName("FROMSYMBOL")
     @Expose
@@ -412,4 +415,104 @@ public class USD_ {
         this.iMAGEURL = iMAGEURL;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.fROMSYMBOL);
+        dest.writeString(this.tOSYMBOL);
+        dest.writeString(this.mARKET);
+        dest.writeString(this.pRICE);
+        dest.writeString(this.lASTUPDATE);
+        dest.writeString(this.lASTVOLUME);
+        dest.writeString(this.lASTVOLUMETO);
+        dest.writeString(this.lASTTRADEID);
+        dest.writeString(this.vOLUMEDAY);
+        dest.writeString(this.vOLUMEDAYTO);
+        dest.writeString(this.vOLUME24HOUR);
+        dest.writeString(this.vOLUME24HOURTO);
+        dest.writeString(this.oPENDAY);
+        dest.writeString(this.hIGHDAY);
+        dest.writeString(this.lOWDAY);
+        dest.writeString(this.oPEN24HOUR);
+        dest.writeString(this.hIGH24HOUR);
+        dest.writeString(this.lOW24HOUR);
+        dest.writeString(this.lASTMARKET);
+        dest.writeString(this.vOLUMEHOUR);
+        dest.writeString(this.vOLUMEHOURTO);
+        dest.writeString(this.oPENHOUR);
+        dest.writeString(this.hIGHHOUR);
+        dest.writeString(this.lOWHOUR);
+        dest.writeString(this.tOPTIERVOLUME24HOUR);
+        dest.writeString(this.tOPTIERVOLUME24HOURTO);
+        dest.writeString(this.cHANGE24HOUR);
+        dest.writeString(this.cHANGEPCT24HOUR);
+        dest.writeString(this.cHANGEDAY);
+        dest.writeString(this.cHANGEPCTDAY);
+        dest.writeString(this.sUPPLY);
+        dest.writeString(this.mKTCAP);
+        dest.writeString(this.tOTALVOLUME24H);
+        dest.writeString(this.tOTALVOLUME24HTO);
+        dest.writeString(this.tOTALTOPTIERVOLUME24H);
+        dest.writeString(this.tOTALTOPTIERVOLUME24HTO);
+        dest.writeString(this.iMAGEURL);
+    }
+
+    public USD_() {
+    }
+
+    protected USD_(Parcel in) {
+        this.fROMSYMBOL = in.readString();
+        this.tOSYMBOL = in.readString();
+        this.mARKET = in.readString();
+        this.pRICE = in.readString();
+        this.lASTUPDATE = in.readString();
+        this.lASTVOLUME = in.readString();
+        this.lASTVOLUMETO = in.readString();
+        this.lASTTRADEID = in.readString();
+        this.vOLUMEDAY = in.readString();
+        this.vOLUMEDAYTO = in.readString();
+        this.vOLUME24HOUR = in.readString();
+        this.vOLUME24HOURTO = in.readString();
+        this.oPENDAY = in.readString();
+        this.hIGHDAY = in.readString();
+        this.lOWDAY = in.readString();
+        this.oPEN24HOUR = in.readString();
+        this.hIGH24HOUR = in.readString();
+        this.lOW24HOUR = in.readString();
+        this.lASTMARKET = in.readString();
+        this.vOLUMEHOUR = in.readString();
+        this.vOLUMEHOURTO = in.readString();
+        this.oPENHOUR = in.readString();
+        this.hIGHHOUR = in.readString();
+        this.lOWHOUR = in.readString();
+        this.tOPTIERVOLUME24HOUR = in.readString();
+        this.tOPTIERVOLUME24HOURTO = in.readString();
+        this.cHANGE24HOUR = in.readString();
+        this.cHANGEPCT24HOUR = in.readString();
+        this.cHANGEDAY = in.readString();
+        this.cHANGEPCTDAY = in.readString();
+        this.sUPPLY = in.readString();
+        this.mKTCAP = in.readString();
+        this.tOTALVOLUME24H = in.readString();
+        this.tOTALVOLUME24HTO = in.readString();
+        this.tOTALTOPTIERVOLUME24H = in.readString();
+        this.tOTALTOPTIERVOLUME24HTO = in.readString();
+        this.iMAGEURL = in.readString();
+    }
+
+    public static final Parcelable.Creator<USD_> CREATOR = new Parcelable.Creator<USD_>() {
+        @Override
+        public USD_ createFromParcel(Parcel source) {
+            return new USD_(source);
+        }
+
+        @Override
+        public USD_[] newArray(int size) {
+            return new USD_[size];
+        }
+    };
 }

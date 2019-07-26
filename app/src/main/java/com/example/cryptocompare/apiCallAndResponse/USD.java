@@ -1,8 +1,11 @@
 package com.example.cryptocompare.apiCallAndResponse;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class USD {
+public class USD implements Parcelable {
 
     @SerializedName("TYPE")
     @Expose
@@ -434,4 +437,108 @@ public class USD {
         this.iMAGEURL = iMAGEURL;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.tYPE);
+        dest.writeString(this.mARKET);
+        dest.writeString(this.fROMSYMBOL);
+        dest.writeString(this.tOSYMBOL);
+        dest.writeString(this.fLAGS);
+        dest.writeValue(this.pRICE);
+        dest.writeValue(this.lASTUPDATE);
+        dest.writeValue(this.lASTVOLUME);
+        dest.writeValue(this.lASTVOLUMETO);
+        dest.writeString(this.lASTTRADEID);
+        dest.writeValue(this.vOLUMEDAY);
+        dest.writeValue(this.vOLUMEDAYTO);
+        dest.writeValue(this.vOLUME24HOUR);
+        dest.writeValue(this.vOLUME24HOURTO);
+        dest.writeValue(this.oPENDAY);
+        dest.writeValue(this.hIGHDAY);
+        dest.writeValue(this.lOWDAY);
+        dest.writeValue(this.oPEN24HOUR);
+        dest.writeValue(this.hIGH24HOUR);
+        dest.writeValue(this.lOW24HOUR);
+        dest.writeString(this.lASTMARKET);
+        dest.writeValue(this.vOLUMEHOUR);
+        dest.writeValue(this.vOLUMEHOURTO);
+        dest.writeValue(this.oPENHOUR);
+        dest.writeValue(this.hIGHHOUR);
+        dest.writeValue(this.lOWHOUR);
+        dest.writeValue(this.tOPTIERVOLUME24HOUR);
+        dest.writeValue(this.tOPTIERVOLUME24HOURTO);
+        dest.writeValue(this.cHANGE24HOUR);
+        dest.writeValue(this.cHANGEPCT24HOUR);
+        dest.writeValue(this.cHANGEDAY);
+        dest.writeValue(this.cHANGEPCTDAY);
+        dest.writeValue(this.sUPPLY);
+        dest.writeValue(this.mKTCAP);
+        dest.writeValue(this.tOTALVOLUME24H);
+        dest.writeValue(this.tOTALVOLUME24HTO);
+        dest.writeValue(this.tOTALTOPTIERVOLUME24H);
+        dest.writeValue(this.tOTALTOPTIERVOLUME24HTO);
+        dest.writeString(this.iMAGEURL);
+    }
+
+    public USD() {
+    }
+
+    protected USD(Parcel in) {
+        this.tYPE = in.readString();
+        this.mARKET = in.readString();
+        this.fROMSYMBOL = in.readString();
+        this.tOSYMBOL = in.readString();
+        this.fLAGS = in.readString();
+        this.pRICE = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTUPDATE = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.lASTVOLUME = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTVOLUMETO = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTTRADEID = in.readString();
+        this.vOLUMEDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUMEDAYTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUME24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUME24HOURTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.oPENDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.hIGHDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.lOWDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.oPEN24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.hIGH24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.lOW24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTMARKET = in.readString();
+        this.vOLUMEHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUMEHOURTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.oPENHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.hIGHHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.lOWHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOPTIERVOLUME24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOPTIERVOLUME24HOURTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGE24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGEPCT24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGEDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGEPCTDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.sUPPLY = (Double) in.readValue(Double.class.getClassLoader());
+        this.mKTCAP = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALVOLUME24H = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALVOLUME24HTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALTOPTIERVOLUME24H = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALTOPTIERVOLUME24HTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.iMAGEURL = in.readString();
+    }
+
+    public static final Parcelable.Creator<USD> CREATOR = new Parcelable.Creator<USD>() {
+        @Override
+        public USD createFromParcel(Parcel source) {
+            return new USD(source);
+        }
+
+        @Override
+        public USD[] newArray(int size) {
+            return new USD[size];
+        }
+    };
 }
