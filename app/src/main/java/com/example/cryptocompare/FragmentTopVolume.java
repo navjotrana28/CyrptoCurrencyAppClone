@@ -10,10 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.cryptocompare.apiCallAndResponse.Api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Api.ServiceRetrofit;
+import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.apiCallAndResponse.Example;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +28,7 @@ public class FragmentTopVolume extends Fragment {
 RecyclerView recyclerView;
 TopVolumeAdapter topVolumeAdapter;
 GridLayoutManager layoutManager;
+private static  List<Datum> datumList=new ArrayList<>();
 private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e3b6958d1620e17445";
 
 
@@ -37,10 +41,10 @@ private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e
                              Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_top_volume, container, false);
-             recyclerView=v.findViewById(R.id.recycler_view_topvolume);
-
-         topVolumeAdapter=new TopVolumeAdapter(getActivity());
+         recyclerView=v.findViewById(R.id.recycler_view_topvolume);
+         topVolumeAdapter=new TopVolumeAdapter(getActivity(), datumList);
          layoutManager=new GridLayoutManager(getActivity(),1);
+         recyclerView.setLayoutManager(layoutManager);
          recyclerView.setAdapter(topVolumeAdapter);
          topVolumeAdapter.notifyDataSetChanged();
 
@@ -52,6 +56,10 @@ private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e
               public void onResponse(Call<Example> call, Response<Example> response) {
                   Example example=response.body();
                   Log.d("coinData", String.valueOf(example.getData().size()));
+                 datumList.addAll(example.getData());
+                  Log.d("coinData", String.valueOf(example.getData()));
+
+                  topVolumeAdapter.notifyDataSetChanged();
               }
 
               @Override
@@ -64,9 +72,6 @@ private static final String API="33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e
           Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
 
       }
-
-
-
         return v;
     }
 

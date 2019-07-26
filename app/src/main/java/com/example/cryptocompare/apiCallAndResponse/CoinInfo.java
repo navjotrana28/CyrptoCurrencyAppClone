@@ -30,7 +30,7 @@ public class CoinInfo {
     private String proofType;
     @SerializedName("NetHashesPerSecond")
     @Expose
-    private Integer netHashesPerSecond;
+    private Double netHashesPerSecond;
     @SerializedName("BlockNumber")
     @Expose
     private Integer blockNumber;
@@ -111,11 +111,11 @@ public class CoinInfo {
         this.proofType = proofType;
     }
 
-    public Integer getNetHashesPerSecond() {
+    public Double getNetHashesPerSecond() {
         return netHashesPerSecond;
     }
 
-    public void setNetHashesPerSecond(Integer netHashesPerSecond) {
+    public void setNetHashesPerSecond(Double netHashesPerSecond) {
         this.netHashesPerSecond = netHashesPerSecond;
     }
 

@@ -51,7 +51,7 @@ public class USD {
     private Double oPENDAY;
     @SerializedName("HIGHDAY")
     @Expose
-    private Integer hIGHDAY;
+    private Double hIGHDAY;
     @SerializedName("LOWDAY")
     @Expose
     private Double lOWDAY;
@@ -242,11 +242,11 @@ public class USD {
         this.oPENDAY = oPENDAY;
     }
 
-    public Integer getHIGHDAY() {
+    public Double getHIGHDAY() {
         return hIGHDAY;
     }
 
-    public void setHIGHDAY(Integer hIGHDAY) {
+    public void setHIGHDAY(Double hIGHDAY) {
         this.hIGHDAY = hIGHDAY;
     }
 

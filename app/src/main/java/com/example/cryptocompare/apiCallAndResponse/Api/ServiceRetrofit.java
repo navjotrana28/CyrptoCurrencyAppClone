@@ -18,6 +18,8 @@ public interface ServiceRetrofit {
 
     @GET("/data/top/totalvolfull?limit=10&tsym=USD")
     Call<Example>getTopVolumeData(
+//            @Query("limit")int limit,
+//            @Query("tsym") String tsym,
             @Query("api_key") String apiKey);
 
 }
