@@ -16,7 +16,6 @@
         app:layout_constraintBottom_toTopOf="@+id/downsearchview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="40dp"
         >
 
         <ImageView
@@ -25,6 +24,7 @@
             android:layout_height="0dp"
             android:background="@color/colorPrimary"
             android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
             app:layout_constraintLeft_toLeftOf="@+id/constraintlayoutsearch"
@@ -47,7 +47,7 @@
         <TextView
             android:id="@+id/usdTag"
             android:text="USD"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
@@ -60,69 +60,69 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:layout_marginTop="20dp"
         android:id="@+id/downsearchview"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorGrey"
+        android:layout_height="0.1px"
+        android:background="@color/colorLightGrey"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/constraintlayoutsearch"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintlayoutFollowing"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/constraintlayoutFollowing"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/downsearchview"
+        app:layout_constraintBottom_toTopOf="@+id/insertFragmentHere"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/viewdownfollowing"
-        android:id="@+id/constraintlayoutFollowing">
-        <Button
+        app:layout_constraintTop_toBottomOf="@+id/downsearchview">
+
+        <TextView
             android:id="@+id/following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Following"
-            android:textSize="14dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
+            android:layout_marginLeft="20dp"
             android:background="@color/colorGreen"
-            app:layout_constraintTop_toTopOf="@+id/constraintlayoutFollowing"
+            android:paddingLeft="63dp"
+            android:paddingTop="5dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="5dp"
+            android:text="Following"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
             app:layout_constraintLeft_toLeftOf="@id/constraintlayoutFollowing"
             app:layout_constraintRight_toLeftOf="@+id/top_volume"
-            />
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutFollowing" />
 
-        <Button
+        <TextView
             android:id="@+id/top_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorWhite"
+            android:paddingLeft="65dp"
+            android:paddingTop="5dp"
+            android:paddingRight="63dp"
+            android:paddingBottom="5dp"
             android:text="Top Volume"
             android:textSize="14dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
             app:layout_constraintLeft_toRightOf="@+id/following"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintlayoutFollowing"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
-            />
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutFollowing" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:layout_marginBottom="40dp"
-        android:id="@+id/viewdownfollowing"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutFollowing"
-        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/insertFragmentHere"
         android:layout_width="match_parent"
-        android:layout_height="520sp"
-        app:layout_constraintTop_toBottomOf="@+id/viewdownfollowing"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutFollowing"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />

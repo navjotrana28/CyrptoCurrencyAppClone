@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
-    Button following,topVolume;
+    TextView following,topVolume;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
