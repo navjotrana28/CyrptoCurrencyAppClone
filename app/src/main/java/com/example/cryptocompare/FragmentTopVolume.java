@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.cryptocompare.apiCallAndResponse.Api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Api.ServiceRetrofit;
@@ -53,7 +54,6 @@ private static  List<Datum> datumList=new ArrayList<>();
              public void onSuccess(Example example) {
                 datumList.addAll(example.getData());
                  topVolumeAdapter.notifyDataSetChanged();
-
              }
              @Override
              public void onFailure(Throwable e) {

@@ -12,11 +12,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
     TextView following,topVolume;
+    ProgressBar progressBar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         topVolume=findViewById(R.id.top_volume);
         following=findViewById(R.id.following);
+        progressBar=findViewById(R.id.progress_bar);
+
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
               following.setTextColor(getResources().getColor(R.color.colorWhite));
                 topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                 topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
+                progressBar.setVisibility(View.GONE);
 
 
                 FragmentManager fragmentManager=getSupportFragmentManager();
@@ -78,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 following.setTextColor(getResources().getColor(R.color.colorBlack));
                 topVolume.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 topVolume.setTextColor(getResources().getColor(R.color.colorWhite));
-
+                 progressBar.setVisibility(View.VISIBLE);
 
                 FragmentManager fragmentManager=getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();

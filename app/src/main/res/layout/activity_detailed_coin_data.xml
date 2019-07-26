@@ -23,20 +23,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bitcoin"
-        android:textSize="25dp"
+        android:textSize="20sp"
+        android:textStyle="normal"
         android:textColor="@color/colorBlack"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/detail_backSign"
         app:layout_constraintBottom_toTopOf="@+id/detail_viewbar"
 
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="USD"
+        android:paddingRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/detail_viewbar"
+        />
     <View
         android:id="@+id/detail_viewbar"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:background="@color/colorLightGrey"
         app:layout_constraintTop_toBottomOf="@+id/detail_coin_Name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="5dp"
         />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detail_constraint_follow"
@@ -53,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
-            android:paddingRight="70dp"
+            android:paddingRight="60dp"
             app:layout_constraintTop_toTopOf="@+id/detail_constraint_follow"
             app:layout_constraintLeft_toLeftOf="@+id/detail_constraint_follow"
             app:layout_constraintRight_toLeftOf="@+id/detail_total_volume_prize"
@@ -64,8 +77,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9807.01"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:textColor="@color/colorBlack"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@+id/detail_constraint_follow"
             app:layout_constraintRight_toLeftOf="@+id/detail_following"
             app:layout_constraintLeft_toRightOf="@+id/detail_coin_symbol_image"
@@ -76,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-2.80"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textColor="@color/colorRed"
             app:layout_constraintTop_toBottomOf="@+id/detail_total_volume_prize"
             app:layout_constraintRight_toLeftOf="@+id/detail_following"
@@ -89,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Following"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:background="@color/colorGreen"
             android:textColor="@color/colorWhite"
             app:layout_constraintRight_toRightOf="@id/detail_constraint_follow"
@@ -110,154 +124,166 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_left_constraint"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/detail_graph_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/detail_right_constraint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
     <TextView
         android:id="@+id/detail_market_cap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_graph_bar"
-        app:layout_constraintRight_toLeftOf="@+id/detail_market_cap_number"
+        app:layout_constraintTop_toTopOf="@+id/detail_left_constraint"
+        app:layout_constraintRight_toRightOf="@+id/detail_left_constraint"
         app:layout_constraintBottom_toTopOf="@+id/detail_total_vol_24h"
         android:text="Market Cap"
-        android:textSize="16dp"
+        style="@style/detailCoinsData"
         android:textColor="@color/colorBlack"
         />
-    <TextView
-        android:id="@+id/detail_market_cap_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="174.94 B"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_graph_bar"
-        app:layout_constraintLeft_toRightOf="@+id/detail_market_cap"
-        app:layout_constraintBottom_toTopOf="@+id/detail_total_vol_24h_number"
 
-        />
     <TextView
         android:id="@+id/detail_total_vol_24h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_market_cap"
-        app:layout_constraintRight_toLeftOf="@+id/detail_total_vol_24h_number"
+        app:layout_constraintRight_toRightOf="@+id/detail_left_constraint"
         app:layout_constraintBottom_toTopOf="@+id/detail_direct_vol_24h"
         android:text="Total Vol.24h"
-        android:textSize="16dp"
+        style="@style/detailCoinsData"
         android:textColor="@color/colorBlack"
         />
-    <TextView
-        android:id="@+id/detail_total_vol_24h_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="284.12 K"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/detail_total_vol_24h"
-        app:layout_constraintTop_toBottomOf="@+id/detail_market_cap_number"
-        app:layout_constraintBottom_toTopOf="@+id/detail_direct_vol_24h_number"
-        />
+
     <TextView
         android:id="@+id/detail_direct_vol_24h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_total_vol_24h"
-        app:layout_constraintRight_toLeftOf="@+id/detail_direct_vol_24h_number"
+        app:layout_constraintRight_toRightOf="@+id/detail_left_constraint"
         app:layout_constraintBottom_toTopOf="@+id/detail_direct_dollar"
         android:text="Direct Vol.24h"
-        android:textSize="16dp"
+        style="@style/detailCoinsData"
         android:textColor="@color/colorBlack"
         />
-    <TextView
-        android:id="@+id/detail_direct_vol_24h_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="36.106.4"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_total_vol_24h_number"
-        app:layout_constraintLeft_toRightOf="@+id/detail_direct_vol_24h"
-        app:layout_constraintBottom_toTopOf="@+id/detail_direct_dollar_number"
-        />
+
     <TextView
         android:id="@+id/detail_direct_dollar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_direct_vol_24h"
-        app:layout_constraintRight_toLeftOf="@+id/detail_direct_dollar_number"
+        app:layout_constraintRight_toRightOf="@+id/detail_left_constraint"
         app:layout_constraintBottom_toTopOf="@+id/detail_open_24h"
         android:text="Direct Vol.24h $"
-        android:textSize="16dp"
+        style="@style/detailCoinsData"
         android:textColor="@color/colorBlack"
         />
-    <TextView
-        android:id="@+id/detail_direct_dollar_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="357,174,519.3"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_direct_vol_24h_number"
-        app:layout_constraintLeft_toRightOf="@+id/detail_direct_dollar"
-        app:layout_constraintBottom_toTopOf="@+id/detail_open_24h_number"
-        />
+
     <TextView
         android:id="@+id/detail_open_24h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_direct_dollar"
-        app:layout_constraintRight_toLeftOf="@+id/detail_open_24h_number"
+        app:layout_constraintRight_toRightOf="@+id/detail_left_constraint"
         app:layout_constraintBottom_toTopOf="@+id/detail_high_low_24h"
         android:text="Open 24h $"
-        android:textSize="16dp"
+        style="@style/detailCoinsData"
         android:textColor="@color/colorBlack"
         />
-    <TextView
-        android:id="@+id/detail_open_24h_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10,089.8"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_direct_dollar_number"
-        app:layout_constraintLeft_toRightOf="@+id/detail_open_24h"
-        app:layout_constraintBottom_toTopOf="@+id/detail_low_24h_number"
 
-        />
     <TextView
         android:id="@+id/detail_high_low_24h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_open_24h"
-        app:layout_constraintRight_toLeftOf="@+id/detail_low_24h_number"
+        app:layout_constraintRight_toRightOf="@+id/detail_left_constraint"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Low/High 24h $"
-        android:textSize="16dp"
+        style="@style/detailCoinsData"
         android:textColor="@color/colorBlack"
         />
-    <TextView
-        android:id="@+id/detail_low_24h_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="9,648.55"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/detail_high_low_24h"
-        app:layout_constraintTop_toBottomOf="@+id/detail_open_24h_number"
-        app:layout_constraintBottom_toBottomOf="parent"
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_right_constraint"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_graph_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/detail_left_constraint"
+        android:paddingLeft="20dp"
+            >
+            <TextView
+                android:id="@+id/detail_market_cap_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="174.94 B"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="@+id/detail_right_constraint"
+                app:layout_constraintLeft_toLeftOf="@+id/detail_right_constraint"
+                app:layout_constraintBottom_toTopOf="@+id/detail_total_vol_24h_number"
+
+                />
+            <TextView
+                android:id="@+id/detail_total_vol_24h_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="284.12 K"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/detail_right_constraint"                app:layout_constraintTop_toBottomOf="@+id/detail_market_cap_number"
+                app:layout_constraintBottom_toTopOf="@+id/detail_direct_vol_24h_number"
+                />
+            <TextView
+                android:id="@+id/detail_direct_vol_24h_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="36.106.4"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/detail_total_vol_24h_number"
+                app:layout_constraintLeft_toLeftOf="@+id/detail_right_constraint"                app:layout_constraintBottom_toTopOf="@+id/detail_direct_dollar_number"
+                />
+
+            <TextView
+                android:id="@+id/detail_open_24h_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10,089.8"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/detail_direct_dollar_number"
+                app:layout_constraintLeft_toLeftOf="@+id/detail_right_constraint"                app:layout_constraintBottom_toTopOf="@+id/detail_low_24h_number"
+
+                />
+            <TextView
+                android:id="@+id/detail_direct_dollar_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="357,174,519.3"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/detail_direct_vol_24h_number"
+                app:layout_constraintLeft_toLeftOf="@+id/detail_right_constraint"                app:layout_constraintBottom_toTopOf="@+id/detail_open_24h_number"
+                />
+            <TextView
+                android:id="@+id/detail_low_24h_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9,648.55"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/detail_right_constraint"                app:layout_constraintTop_toBottomOf="@+id/detail_open_24h_number"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
