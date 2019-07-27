@@ -2,8 +2,6 @@ package com.example.cryptocompare;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.PicassoProvider;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyViewHolder> {
@@ -67,10 +62,10 @@ public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyV
 
       MyViewHolder(View view){
           super(view);
-          coinName=view.findViewById(R.id.name_of_coin);
-          coinImage =view.findViewById(R.id.image_symbol);
-          coinSymbol =view.findViewById(R.id.coin_symbol);
-          overallVolume=view.findViewById(R.id.total_volume_prize);
+          coinName=view.findViewById(R.id.news_type);
+          coinImage =view.findViewById(R.id.news_image);
+          coinSymbol =view.findViewById(R.id.news_headlines);
+          overallVolume=view.findViewById(R.id.news_category);
           prizeOfCoin =view.findViewById(R.id.prize_of_coin);
 
           view.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
-package com.example.cryptocompare.apiCallAndResponse.Api;
+package com.example.cryptocompare.Api;
 
 import com.example.cryptocompare.apiCallAndResponse.Example;
+import com.example.cryptocompare.newsResponse.NewsResult;
 
 import io.reactivex.Single;
 import retrofit2.Call;
@@ -18,4 +19,8 @@ public interface ServiceRetrofit {
 //            @Query("tsym") String tsym,
             @Query("api_key") String apiKey);
 
+    @GET("/data/v2/news/?lang=EN")
+    Single<NewsResult>getNewsData(
+
+            @Query("api_key") String apikey);
 }

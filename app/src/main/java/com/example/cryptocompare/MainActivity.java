@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,14 +25,33 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.watch_list_bar:
+                {
+                    following.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    following.setTextColor(getResources().getColor(R.color.colorWhite));
+                    topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                    topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
+                    progressBar.setVisibility(View.GONE);
+
+                    FragmentManager fragmentManager=getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                    fragmentTransaction
+                            .replace(R.id.insertFragmentHere,new FragmentFollowing())
+                            .commit();
+                }
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.portfolio_bar:
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.newsBar:
+                {
+                    FragmentManager fragmentManager=getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                    fragmentTransaction
+                            .replace(R.id.insertFragmentHere,new FragmentNews())
+                            .commit();
+                }
+
+
                     return true;
             }
             return false;
@@ -68,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                 topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
                 progressBar.setVisibility(View.GONE);
-
 
                 FragmentManager fragmentManager=getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();

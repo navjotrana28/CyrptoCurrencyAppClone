@@ -1,27 +1,17 @@
 package com.example.cryptocompare;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-import com.example.cryptocompare.apiCallAndResponse.Api.ClientRetrofit;
-import com.example.cryptocompare.apiCallAndResponse.Api.ServiceRetrofit;
+import com.example.cryptocompare.Api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.apiCallAndResponse.Example;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class FragmentTopVolume extends Fragment {
@@ -29,6 +19,7 @@ public class FragmentTopVolume extends Fragment {
 RecyclerView recyclerView;
 TopVolumeAdapter topVolumeAdapter;
 GridLayoutManager layoutManager;
+ ProgressBar progressBar;
 private static  List<Datum> datumList=new ArrayList<>();
 
 
@@ -49,7 +40,7 @@ private static  List<Datum> datumList=new ArrayList<>();
          topVolumeAdapter.notifyDataSetChanged();
 
          ClientRetrofit clientRetrofit = new ClientRetrofit();
-         clientRetrofit.loadJSON(new interfaceCallback(){
+         clientRetrofit.loadJSON(new InterfaceCallback(){
              @Override
              public void onSuccess(Example example) {
                 datumList.addAll(example.getData());

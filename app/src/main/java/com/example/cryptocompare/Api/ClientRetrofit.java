@@ -1,12 +1,12 @@
-package com.example.cryptocompare.apiCallAndResponse.Api;
+package com.example.cryptocompare.Api;
 
 import android.util.Log;
-import android.widget.Toast;
 
+import com.example.cryptocompare.NewsInterface;
 import com.example.cryptocompare.apiCallAndResponse.Example;
-import com.example.cryptocompare.interfaceCallback;
+import com.example.cryptocompare.InterfaceCallback;
+import com.example.cryptocompare.newsResponse.NewsResult;
 
-import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -23,7 +23,6 @@ public class ClientRetrofit {
     public static Retrofit retrofit = null;
     public final ServiceRetrofit serviceRetrofit;
 
-
     public ClientRetrofit() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -35,7 +34,7 @@ public class ClientRetrofit {
         serviceRetrofit = retrofit.create(ServiceRetrofit.class);
     }
 
-    public void loadJSON(final interfaceCallback interfaceCallback) {
+    public void loadJSON(final InterfaceCallback interfaceCallback) {
         serviceRetrofit.getTopVolumeData(API)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -51,6 +50,30 @@ public class ClientRetrofit {
 
                     @Override
                     public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    public void loadNewsData(final NewsInterface newsInterface) {
+        Log.d("result","resultthere");
+
+        serviceRetrofit.getNewsData(API)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<NewsResult>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onSuccess(NewsResult newsResult) {
+                        newsInterface.onSuccessNews(newsResult);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("result",e.getLocalizedMessage());
 
                     }
                 });

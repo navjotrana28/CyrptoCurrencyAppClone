@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">CryptoCompare</string>
-    <string name="title_home">Watchlist</string>
-    <string name="title_dashboard">Portfolio</string>
-    <string name="title_notifications">News</string>
+    <string name="title_watchlist">Watchlist</string>
+    <string name="title_portfolio">Portfolio</string>
+    <string name="title_news">News</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
