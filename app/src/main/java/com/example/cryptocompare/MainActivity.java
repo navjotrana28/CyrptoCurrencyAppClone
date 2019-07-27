@@ -6,6 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -14,10 +15,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.lang.invoke.ConstantCallSite;
+
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
     TextView following,topVolume;
     ProgressBar progressBar;
+    ConstraintLayout constraintlayoutsearch,constraintfollowoing;
+    View downsearchView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
                     topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                     topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
                     progressBar.setVisibility(View.GONE);
+                    constraintfollowoing.setVisibility(View.VISIBLE);
+                    constraintlayoutsearch.setVisibility(View.VISIBLE);
+                    downsearchView.setVisibility(View.VISIBLE);
 
                     FragmentManager fragmentManager=getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
@@ -44,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.newsBar:
                 {
+                    progressBar.setVisibility(View.VISIBLE);
+                    constraintfollowoing.setVisibility(View.GONE);
+                    constraintlayoutsearch.setVisibility(View.GONE);
                     FragmentManager fragmentManager=getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                     fragmentTransaction
@@ -65,11 +75,12 @@ public class MainActivity extends AppCompatActivity {
         topVolume=findViewById(R.id.top_volume);
         following=findViewById(R.id.following);
         progressBar=findViewById(R.id.progress_bar);
-
+        constraintlayoutsearch=findViewById(R.id.constraintlayoutsearch);
+        constraintfollowoing=findViewById(R.id.constraintlayoutFollowing);
+        downsearchView=findViewById(R.id.downsearchview);
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         FragmentManager fragmentManager=getSupportFragmentManager();
@@ -86,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                 topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
                 progressBar.setVisibility(View.GONE);
+                constraintfollowoing.setVisibility(View.VISIBLE);
+                constraintlayoutsearch.setVisibility(View.VISIBLE);
+                downsearchView.setVisibility(View.VISIBLE);
+
 
                 FragmentManager fragmentManager=getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
@@ -102,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
                 topVolume.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 topVolume.setTextColor(getResources().getColor(R.color.colorWhite));
                  progressBar.setVisibility(View.VISIBLE);
+                constraintfollowoing.setVisibility(View.VISIBLE);
+                constraintlayoutsearch.setVisibility(View.VISIBLE);
+                downsearchView.setVisibility(View.VISIBLE);
+
 
                 FragmentManager fragmentManager=getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();

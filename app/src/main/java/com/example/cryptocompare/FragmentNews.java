@@ -1,14 +1,11 @@
 package com.example.cryptocompare;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +34,7 @@ public class FragmentNews extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fragment_news, container, false);
+        View v = inflater.inflate(R.layout.fragment_news, container, false);
 
         recyclerView=v.findViewById(R.id.recycler_view_news);
         newsAdapter= new NewsAdapter(getActivity(),dataList);
@@ -51,7 +48,6 @@ public class FragmentNews extends Fragment {
             @Override
             public void onSuccessNews(NewsResult newsResult) {
                 dataList.addAll(Arrays.asList(newsResult.getData()));
-                Log.d("newsData", String.valueOf(dataList.size()));
                newsAdapter.notifyDataSetChanged();
             }
 

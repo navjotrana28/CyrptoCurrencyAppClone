@@ -1,6 +1,7 @@
 package com.example.cryptocompare;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,9 @@ public class NewsAdapter  extends RecyclerView.Adapter<NewsAdapter.MyViewHolder>
         holder.newsHeadlines.setText(dataList.get(position).getTitle());
         holder.newsCategory.setText(dataList.get(position).getCategories());
         Picasso.get()
-                .load(dataList.get(position).getSource_info().getImg())
+                .load(dataList.get(position).getImageurl())
                 .placeholder(R.drawable.ic_launcher_foreground)
-                .resize(400,160)
+                .resize(450,190)
                 .centerInside()
                 .into(holder.newsImage);
     }
@@ -65,16 +66,15 @@ public class NewsAdapter  extends RecyclerView.Adapter<NewsAdapter.MyViewHolder>
             newsHeadlines =view.findViewById(R.id.news_headlines);
             newsCategory=view.findViewById(R.id.news_category);
 
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int pos=getAdapterPosition();
-//                    Toast.makeText(view.getContext(),"youclicked"+pos,Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(mcontext,DetailedCoinData.class);
-//                    intent.putExtra("coin_data",  datumList.get(pos));
-//                    mcontext.startActivity(intent);
-//                }
-//            });
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos=getAdapterPosition();
+                    Toast.makeText(view.getContext(),"Youclicked:"+dataList.get(pos).getSource_info().getName(),Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(dataList.get(pos).getGuid()));
+                    mcontext.startActivity(intent);
+                }
+            });
 
         }
     }

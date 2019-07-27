@@ -6,7 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="110dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp">
         <ImageView
@@ -38,9 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Bitcoin maintains its trent of oscillation and trades with upper swing"
-            android:textSize="14dp"
+            android:textSize="13dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="3dp"
             android:textColor="@color/colorBlack"
             android:paddingBottom="10dp"
             app:layout_constraintTop_toBottomOf="@+id/news_type"
@@ -54,7 +54,7 @@
             android:text="BTC|Market|Altcoin"
             android:textSize="12sp"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="12dp"
             app:layout_constraintLeft_toRightOf="@+id/news_image"
             app:layout_constraintBottom_toBottomOf="parent"
             />

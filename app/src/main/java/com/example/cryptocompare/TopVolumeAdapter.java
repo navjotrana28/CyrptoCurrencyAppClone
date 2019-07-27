@@ -72,7 +72,7 @@ public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyV
               @Override
               public void onClick(View view) {
                   int pos=getAdapterPosition();
-                  Toast.makeText(view.getContext(),"youclicked"+pos,Toast.LENGTH_SHORT).show();
+                  Toast.makeText(view.getContext(),"Youclicked:"+datumList.get(pos).getCoinInfo().getFullName(),Toast.LENGTH_SHORT).show();
                   Intent intent = new Intent(mcontext,DetailedCoinData.class);
                   intent.putExtra("coin_data",  datumList.get(pos));
                   mcontext.startActivity(intent);

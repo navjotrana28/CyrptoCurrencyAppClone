@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ public class DetailedCoinData extends AppCompatActivity {
     Datum datumList;
     ImageView coinImage;
     TextView detailCoinName,detailTotalVolPrize,detailPercentPrize,detailmarket,detailtotalvol
-            ,detailDirectVol,detailDirectDollar,detailOpen,detailLow;
+            ,detailDirectVol,detailDirectDollar,detailOpen,detailLow,followButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class DetailedCoinData extends AppCompatActivity {
         detailOpen=findViewById(R.id.detail_open_24h_number);
         detailLow=findViewById(R.id.detail_low_24h_number);
         coinImage=findViewById(R.id.detail_coin_symbol_image);
+        followButton=findViewById(R.id.detail_follow);
 
         Intent intentStartedActivity=getIntent();
        if(intentStartedActivity.hasExtra("coin_data")){
@@ -48,9 +50,20 @@ public class DetailedCoinData extends AppCompatActivity {
            Picasso.get()
                    .load("https://www.cryptocompare.com"+datumList.getCoinInfo().getImageUrl())
                    .placeholder(R.drawable.ic_launcher_foreground)
-                   .resize(280,130)
+                   .resize(350,160)
                    .centerInside()
                    .into(coinImage);
+
+           followButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   //followButton.setTextColor(getResources().getColor(R.color.colorWhite));
+                   followButton.setText("Following");
+
+               }
+           });
+
+
 
        }
 
