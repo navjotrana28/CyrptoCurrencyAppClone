@@ -1,11 +1,10 @@
-package com.example.cryptocompare.Api;
+package com.example.cryptocompare.api;
 
 import com.example.cryptocompare.apiCallAndResponse.Example;
 import com.example.cryptocompare.graphResponse.MyPojo;
 import com.example.cryptocompare.newsResponse.NewsResult;
 
 import io.reactivex.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

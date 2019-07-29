@@ -1,4 +1,4 @@
-package com.example.cryptocompare.Api;
+package com.example.cryptocompare.api;
 
 import android.util.Log;
 

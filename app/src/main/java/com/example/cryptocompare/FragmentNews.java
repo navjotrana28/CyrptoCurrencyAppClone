@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.example.cryptocompare.Api.ClientRetrofit;
+import com.example.cryptocompare.api.ClientRetrofit;
 import com.example.cryptocompare.newsResponse.Data;
 import com.example.cryptocompare.newsResponse.NewsResult;
 
