@@ -2,9 +2,11 @@ package com.example.cryptocompare.Api;
 
 import android.util.Log;
 
+import com.example.cryptocompare.GraphInterface;
 import com.example.cryptocompare.NewsInterface;
 import com.example.cryptocompare.apiCallAndResponse.Example;
 import com.example.cryptocompare.InterfaceCallback;
+import com.example.cryptocompare.graphResponse.MyPojo;
 import com.example.cryptocompare.newsResponse.NewsResult;
 
 import io.reactivex.SingleObserver;
@@ -69,6 +71,32 @@ public class ClientRetrofit {
                     @Override
                     public void onSuccess(NewsResult newsResult) {
                         newsInterface.onSuccessNews(newsResult);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("result",e.getLocalizedMessage());
+
+                    }
+                });
+    }
+
+
+    public void loadGraphData(final GraphInterface graphInterface) {
+        Log.d("graphresult","resultthere");
+
+        serviceRetrofit.getGraphData(API)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<MyPojo>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onSuccess(MyPojo myPojo) {
+                        Log.d("graphresultsuccess","resultthere");
+                        graphInterface.onGraphSuccess(myPojo);
                     }
 
                     @Override

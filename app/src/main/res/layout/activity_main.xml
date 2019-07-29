@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/downsearchview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="5dp"
         >
 
         <ImageView
@@ -33,10 +34,11 @@
             android:textSize="20sp"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:paddingLeft="20dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="15dp"
+            android:queryHint="Search"
+            android:iconifiedByDefault="false"
             android:background="@color/colorLightestGrey"
             app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
             app:layout_constraintLeft_toRightOf="@+id/imageView1"

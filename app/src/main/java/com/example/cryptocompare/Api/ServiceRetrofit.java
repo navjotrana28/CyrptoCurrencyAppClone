@@ -1,6 +1,7 @@
 package com.example.cryptocompare.Api;
 
 import com.example.cryptocompare.apiCallAndResponse.Example;
+import com.example.cryptocompare.graphResponse.MyPojo;
 import com.example.cryptocompare.newsResponse.NewsResult;
 
 import io.reactivex.Single;
@@ -23,4 +24,10 @@ public interface ServiceRetrofit {
     Single<NewsResult>getNewsData(
 
             @Query("api_key") String apikey);
+
+    @GET("/data/histoday?fsym=BTC&tsym=USD&limit=99")
+    Single<MyPojo>getGraphData(
+
+     @Query("api_key") String apikey);
+
 }

@@ -132,6 +132,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         >
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/line_chart"
+            app:layout_constraintTop_toTopOf="@id/detail_graph_bar"
+            app:layout_constraintBottom_toBottomOf="@id/detail_graph_bar"
+            >
+
+
+        </com.github.mikephil.charting.charts.LineChart>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

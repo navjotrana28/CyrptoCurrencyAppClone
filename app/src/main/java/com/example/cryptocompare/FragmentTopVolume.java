@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import com.example.cryptocompare.Api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.apiCallAndResponse.Example;
+import com.example.cryptocompare.graphResponse.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ TopVolumeAdapter topVolumeAdapter;
 GridLayoutManager layoutManager;
  ProgressBar progressBar;
 private static  List<Datum> datumList=new ArrayList<>();
+private static List<Data> graphDataList=new ArrayList<>();
 
 
     public FragmentTopVolume() {
