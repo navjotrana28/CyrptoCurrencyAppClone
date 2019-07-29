@@ -30,7 +30,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class DetailedCoinData extends AppCompatActivity {
-
     private  ArrayList<Data> graphDataList = new ArrayList();
     LineChart lineChart;
     Datum datumList;
@@ -91,6 +90,8 @@ public class DetailedCoinData extends AppCompatActivity {
                 public void onGraphSuccess(MyPojo myPojo) {
                     graphDataList.addAll(Arrays.asList(myPojo.getData()));
                     Log.d("graphData2", String.valueOf(graphDataList.size()));
+
+
                     LineDataSet lineDataSet = new LineDataSet(getDataVal(), "dataSet");
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(lineDataSet);

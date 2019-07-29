@@ -19,11 +19,16 @@ import java.util.List;
 
 public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyViewHolder> {
     Context mcontext;
+
+    public void setDatumList(List<Datum> datumList) {
+        this.datumList = datumList;
+    }
+
     List<Datum> datumList;
-  public TopVolumeAdapter(Context context,List<Datum> wholeData)
+
+  public TopVolumeAdapter(Context context)
   {
       mcontext=context;
-      datumList= wholeData;
   }
     @NonNull
     @Override

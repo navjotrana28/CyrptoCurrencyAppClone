@@ -34,7 +34,7 @@ private static  List<Datum> datumList=new ArrayList<>();
 
         View v= inflater.inflate(R.layout.fragment_top_volume, container, false);
          recyclerView=v.findViewById(R.id.recycler_view_topvolume);
-         topVolumeAdapter=new TopVolumeAdapter(getActivity(), datumList);
+         topVolumeAdapter=new TopVolumeAdapter(getActivity());
          layoutManager=new GridLayoutManager(getActivity(),1);
          recyclerView.setLayoutManager(layoutManager);
          recyclerView.setAdapter(topVolumeAdapter);
@@ -45,6 +45,7 @@ private static  List<Datum> datumList=new ArrayList<>();
              @Override
              public void onSuccess(Example example) {
                 datumList.addAll(example.getData());
+                topVolumeAdapter.setDatumList(example.getData());
                  topVolumeAdapter.notifyDataSetChanged();
              }
              @Override
