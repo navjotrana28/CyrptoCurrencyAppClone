@@ -25,7 +25,6 @@ public class FragmentFollowing extends Fragment {
     RecyclerView recyclerView;
     FollowingAdapter followingAdapter;
     GridLayoutManager layoutManager;
-    private static List<Datum> datumList=new ArrayList<>();
 
     public FragmentFollowing() {
     }
@@ -48,22 +47,17 @@ public class FragmentFollowing extends Fragment {
                 @Override
                 public void onSuccess(Example example) {
                     List<Datum>datumTemp=new ArrayList<>();
-                    //datumList.addAll();
+//                    datumList.addAll(example.getData());
                     SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
-                    for(Datum datum : example.getData()) {
-                        if (pref.contains(datum.getCoinInfo().getId())) {
-                            datumTemp.add(datum);
+                    for(int i=0;i<example.getData().size();i++) {
+                        if (pref.contains(example.getData().get(i).getCoinInfo().getId())) {
+                            datumTemp.add(example.getData().get(i));
+                            Log.d("prefData", String.valueOf(datumTemp.size()));
+                            Log.d("prefData2", String.valueOf(example.getData().size()));
+
+
                         }
                     }
-                    /*for(int i=0;i<20;i++) {
-                        if (pref.contains(datumList.get(i).getCoinInfo().getId())) {
-                            datumTemp.add(datumList.get(i));
-                            Log.d("prefData", String.valueOf(datumTemp.size()));
-                            Log.d("prefData2", String.valueOf(datumList.size()));
-
-
-                        }
-                    }*/
                     followingAdapter.setDatumList(datumTemp);
 
 
