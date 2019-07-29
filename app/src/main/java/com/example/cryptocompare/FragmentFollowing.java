@@ -27,17 +27,18 @@ public class FragmentFollowing extends Fragment {
     GridLayoutManager layoutManager;
     private static List<Datum> datumList=new ArrayList<>();
 
-
     public FragmentFollowing() {
     }
         @Override
         public View onCreateView (LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState){
             // Inflate the layout for this fragment
-           View v= inflater.inflate(R.layout.fragment_following, container, false);
+
+
+            View v= inflater.inflate(R.layout.fragment_following, container, false);
 
             recyclerView=v.findViewById(R.id.recycler_view_following_fragment);
-            followingAdapter=new FollowingAdapter(getActivity(), datumList);
+            followingAdapter=new FollowingAdapter(getActivity());
             layoutManager=new GridLayoutManager(getActivity(),1);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(followingAdapter);
@@ -46,8 +47,26 @@ public class FragmentFollowing extends Fragment {
             clientRetrofit.loadJSON(new InterfaceCallback(){
                 @Override
                 public void onSuccess(Example example) {
-                    datumList.addAll(example.getData());
-                    followingAdapter.notifyDataSetChanged();
+                    List<Datum>datumTemp=new ArrayList<>();
+                    //datumList.addAll();
+                    SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+                    for(Datum datum : example.getData()) {
+                        if (pref.contains(datum.getCoinInfo().getId())) {
+                            datumTemp.add(datum);
+                        }
+                    }
+                    /*for(int i=0;i<20;i++) {
+                        if (pref.contains(datumList.get(i).getCoinInfo().getId())) {
+                            datumTemp.add(datumList.get(i));
+                            Log.d("prefData", String.valueOf(datumTemp.size()));
+                            Log.d("prefData2", String.valueOf(datumList.size()));
+
+
+                        }
+                    }*/
+                    followingAdapter.setDatumList(datumTemp);
+
+
                 }
                 @Override
                 public void onFailure(Throwable e) {

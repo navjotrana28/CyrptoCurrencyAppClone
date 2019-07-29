@@ -19,11 +19,16 @@ import java.util.List;
 
 public class FollowingAdapter  extends RecyclerView.Adapter<FollowingAdapter.MyViewHolder> {
     Context mcontext;
+
+    public void setDatumList(List<Datum> datumList) {
+        this.datumList = datumList;
+        notifyDataSetChanged();
+    }
+
     List<Datum> datumList;
-    public FollowingAdapter(Context context,List<Datum> wholeData)
+    public FollowingAdapter(Context context)
     {
         mcontext=context;
-        datumList= wholeData;
     }
     @NonNull
     @Override
@@ -37,8 +42,6 @@ public class FollowingAdapter  extends RecyclerView.Adapter<FollowingAdapter.MyV
     @Override
     public void onBindViewHolder(@NonNull FollowingAdapter.MyViewHolder holder, int position) {
 
-        SharedPreferences pref = mcontext.getSharedPreferences("MyPref", 0);
-        if (pref.contains(datumList.get(position).getCoinInfo().getFullName())) {
             holder.coinName.setText(datumList.get(position).getCoinInfo().getFullName());
             holder.coinSymbol.setText(datumList.get(position).getCoinInfo().getName());
             holder.overallVolume.setText(datumList.get(position).getDISPLAY().getUSD().getTOTALVOLUME24HTO());
@@ -50,7 +53,6 @@ public class FollowingAdapter  extends RecyclerView.Adapter<FollowingAdapter.MyV
                     .centerInside()
                     .into(holder.coinImage);
         }
-    }
 
     @Override
     public int getItemCount() {

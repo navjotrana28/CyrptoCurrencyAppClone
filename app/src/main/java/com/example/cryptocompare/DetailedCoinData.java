@@ -140,15 +140,16 @@ public class DetailedCoinData extends AppCompatActivity {
                 //followButton.setTextColor(getResources().getColor(R.color.colorWhite));
                 SharedPreferences pref=getApplicationContext().getSharedPreferences("MyPref",0);
                 SharedPreferences.Editor editor=pref.edit();
-                if(pref.contains(datumList.getCoinInfo().getFullName())) {
+                if(pref.contains(datumList.getCoinInfo().getId())) {
                     followButton.setText("Follow");
                     Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" removed",Toast.LENGTH_SHORT).show();
-                    editor.remove(datumList.getCoinInfo().getFullName());
+                    editor.remove(datumList.getCoinInfo().getId());
                     editor.commit();
+
                 }else{
                     followButton.setText("Following");
                     Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" Added",Toast.LENGTH_SHORT).show();
-                    editor.putString(datumList.getCoinInfo().getFullName(), datumList.getCoinInfo().getId());
+                    editor.putString(datumList.getCoinInfo().getId(), datumList.getCoinInfo().getFullName());
                     editor.commit();
                     Log.d("saved pref", editor.toString());
                 }
