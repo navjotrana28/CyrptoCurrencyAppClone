@@ -23,8 +23,6 @@ TopVolumeAdapter topVolumeAdapter;
 GridLayoutManager layoutManager;
  ProgressBar progressBar;
 private static  List<Datum> datumList=new ArrayList<>();
-private static List<Data> graphDataList=new ArrayList<>();
-
 
     public FragmentTopVolume() {
         // Required empty public constructor

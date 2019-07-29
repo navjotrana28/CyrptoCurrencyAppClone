@@ -1,6 +1,7 @@
 package com.example.cryptocompare;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -109,7 +110,6 @@ public class DetailedCoinData extends AppCompatActivity {
                     lineDataSet.setColor(Color.RED);
                     lineDataSet.setDrawFilled(true);
                     lineDataSet.setDrawValues(false);
-
 //setting data
                     LineData lineData = new LineData(dataSets);
                     lineChart.setData(lineData);
@@ -138,9 +138,20 @@ public class DetailedCoinData extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //followButton.setTextColor(getResources().getColor(R.color.colorWhite));
-                followButton.setText("Following");
-
-
+                SharedPreferences pref=getApplicationContext().getSharedPreferences("MyPref",0);
+                SharedPreferences.Editor editor=pref.edit();
+                if(pref.contains(datumList.getCoinInfo().getFullName())) {
+                    followButton.setText("Follow");
+                    Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" removed",Toast.LENGTH_SHORT).show();
+                    editor.remove(datumList.getCoinInfo().getFullName());
+                    editor.commit();
+                }else{
+                    followButton.setText("Following");
+                    Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" Added",Toast.LENGTH_SHORT).show();
+                    editor.putString(datumList.getCoinInfo().getFullName(), datumList.getCoinInfo().getId());
+                    editor.commit();
+                    Log.d("saved pref", editor.toString());
+                }
             }
         });
     }

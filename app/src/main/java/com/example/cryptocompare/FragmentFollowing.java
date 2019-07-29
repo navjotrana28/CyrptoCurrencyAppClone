@@ -1,15 +1,32 @@
 package com.example.cryptocompare;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.example.cryptocompare.api.ClientRetrofit;
+import com.example.cryptocompare.apiCallAndResponse.Datum;
+import com.example.cryptocompare.apiCallAndResponse.Example;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class FragmentFollowing extends Fragment {
+    RecyclerView recyclerView;
+    FollowingAdapter followingAdapter;
+    GridLayoutManager layoutManager;
+    private static List<Datum> datumList=new ArrayList<>();
+
 
     public FragmentFollowing() {
     }
@@ -19,6 +36,23 @@ public class FragmentFollowing extends Fragment {
             // Inflate the layout for this fragment
            View v= inflater.inflate(R.layout.fragment_following, container, false);
 
+            recyclerView=v.findViewById(R.id.recycler_view_following_fragment);
+            followingAdapter=new FollowingAdapter(getActivity(), datumList);
+            layoutManager=new GridLayoutManager(getActivity(),1);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(followingAdapter);
+
+            ClientRetrofit clientRetrofit = new ClientRetrofit();
+            clientRetrofit.loadJSON(new InterfaceCallback(){
+                @Override
+                public void onSuccess(Example example) {
+                    datumList.addAll(example.getData());
+                    followingAdapter.notifyDataSetChanged();
+                }
+                @Override
+                public void onFailure(Throwable e) {
+                }
+            });
 
             return v;
     }
