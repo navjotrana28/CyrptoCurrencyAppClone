@@ -21,7 +21,7 @@ import java.util.List;
 
 public class FragmentFollowing extends Fragment {
     RecyclerView recyclerView;
-    FollowingAdapter followingAdapter;
+    TopVolumeAdapter followingAdapter;
     GridLayoutManager layoutManager;
 
     public FragmentFollowing() {
@@ -35,7 +35,7 @@ public class FragmentFollowing extends Fragment {
             View v= inflater.inflate(R.layout.fragment_following, container, false);
 
             recyclerView=v.findViewById(R.id.recycler_view_following_fragment);
-            followingAdapter=new FollowingAdapter(getActivity());
+            followingAdapter=new TopVolumeAdapter(getActivity());
             layoutManager=new GridLayoutManager(getActivity(),1);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(followingAdapter);

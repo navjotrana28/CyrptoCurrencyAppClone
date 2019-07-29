@@ -3,6 +3,7 @@ package com.example.cryptocompare;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cryptocompare.api.ClientRetrofit;
@@ -36,6 +38,7 @@ public class DetailedCoinData extends AppCompatActivity {
     ImageView coinImage, detailBackSign;
     TextView detailCoinName, detailTotalVolPrize, detailPercentPrize, detailmarket, detailtotalvol, detailDirectVol, detailDirectDollar, detailOpen, detailLow, followButton;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,24 +134,38 @@ public class DetailedCoinData extends AppCompatActivity {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 
         }
+        final SharedPreferences pref=getApplicationContext().getSharedPreferences("MyPref",0);
+        final SharedPreferences.Editor editor=pref.edit();
+
+        if(pref.contains(datumList.getCoinInfo().getId()))
+        {
+            followButton.setText("Following");
+            followButton.setTextColor(getResources().getColor(R.color.colorWhite));
+            followButton.setBackground(getResources().getDrawable(R.drawable.rounded_border_greenfollow));
+        }
 
 //graph
-
 
         followButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //followButton.setTextColor(getResources().getColor(R.color.colorWhite));
-                SharedPreferences pref=getApplicationContext().getSharedPreferences("MyPref",0);
-                SharedPreferences.Editor editor=pref.edit();
+
                 if(pref.contains(datumList.getCoinInfo().getId())) {
                     followButton.setText("Follow");
+                    followButton.setBackground(getResources().getDrawable(R.drawable.rounded_border_follow));
+                    followButton.setTextColor(getResources().getColor(R.color.colorBlack));
+
                     Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" removed",Toast.LENGTH_SHORT).show();
                     editor.remove(datumList.getCoinInfo().getId());
                     editor.commit();
 
                 }else{
                     followButton.setText("Following");
+                    followButton.setTextColor(getResources().getColor(R.color.colorWhite));
+                    followButton.setBackground(getResources().getDrawable(R.drawable.rounded_border_greenfollow));
+
+
                     Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" Added",Toast.LENGTH_SHORT).show();
                     editor.putString(datumList.getCoinInfo().getId(), datumList.getCoinInfo().getFullName());
                     editor.commit();

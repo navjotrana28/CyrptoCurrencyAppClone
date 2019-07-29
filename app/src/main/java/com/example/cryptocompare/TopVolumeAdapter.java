@@ -22,6 +22,7 @@ public class TopVolumeAdapter  extends RecyclerView.Adapter<TopVolumeAdapter.MyV
 
     public void setDatumList(List<Datum> datumList) {
         this.datumList = datumList;
+        notifyDataSetChanged();
     }
 
     List<Datum> datumList;
