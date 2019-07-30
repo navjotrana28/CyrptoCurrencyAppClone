@@ -81,10 +81,10 @@ public class ClientRetrofit {
                 });
     }
 
-    public void loadGraphData(String coinSymbol,String coinUsd,int limit,final GraphInterface graphInterface) {
+    public void loadGraphData(String time,String coinSymbol,String coinUsd,int limit,final GraphInterface graphInterface) {
         Log.d("graphresult", coinSymbol);
 
-        serviceRetrofit.getGraphData(coinSymbol,coinUsd,limit,API)
+        serviceRetrofit.getGraphData(time,coinSymbol,coinUsd,limit,API)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<MyPojo>() {

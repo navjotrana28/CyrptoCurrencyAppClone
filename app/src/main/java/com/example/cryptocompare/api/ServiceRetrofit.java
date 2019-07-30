@@ -24,8 +24,9 @@ public interface ServiceRetrofit {
 
             @Query("api_key") String apikey);
 
-    @GET("/data/histoday")
+    @GET("/data/{time}")
     Single<MyPojo> getGraphData(
+            @Path("time") String time,
             @Query("fsym") String coinSymbol,
             @Query("tsym") String coinusd,
             @Query("limit") int limit,

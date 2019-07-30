@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DetailedCoinData extends AppCompatActivity {
+public class DetailedCoinData extends AppCompatActivity implements View.OnClickListener {
     public static final String COIN_DATA = "coin_data";
     public static final String HTTPS_WWW_CRYPTOCOMPARE_COM = "https://www.cryptocompare.com";
     public static final String DATA_SET = "dataSet";
@@ -39,9 +40,12 @@ public class DetailedCoinData extends AppCompatActivity {
     public static final String FOLLOW = "Follow";
     public static final String REMOVED = " removed";
     public static final String ADDED = " Added";
+    public static String time="histominute";
+
     LineChart lineChart;
     Datum datumList;
     ImageView coinImage, detailBackSign;
+    Button oneMin,oneHour,oneDay;
     TextView detailCoinName, detailTotalVolPrize, detailPercentPrize, detailmarket, detailtotalvol, detailDirectVol, detailDirectDollar, detailOpen, detailLow, followButton;
     private ArrayList<Data> graphDataList = new ArrayList();
 
@@ -63,6 +67,9 @@ public class DetailedCoinData extends AppCompatActivity {
         followButton = findViewById(R.id.detail_follow);
         detailBackSign = findViewById(R.id.detail_backSign);
         lineChart = findViewById(R.id.line_chart);
+        oneMin=findViewById(R.id.one_min);
+        oneHour=findViewById(R.id.one_hour);
+        oneDay=findViewById(R.id.one_Day);
 
         Intent intentStartedActivity = getIntent();
         if (intentStartedActivity.hasExtra(COIN_DATA)) {
@@ -81,8 +88,8 @@ public class DetailedCoinData extends AppCompatActivity {
         Picasso.get()
                 .load(HTTPS_WWW_CRYPTOCOMPARE_COM + datumList.getCoinInfo().getImageUrl())
                 .placeholder(R.drawable.ic_launcher_foreground)
-                .resize(500, 200)
-                .centerInside()
+                .resize(200, 200)
+                .centerCrop()
                 .into(coinImage);
 
         detailBackSign.setOnClickListener(new View.OnClickListener() {
@@ -91,54 +98,12 @@ public class DetailedCoinData extends AppCompatActivity {
                 finish();
             }
         });
+        callGraphData();
+        oneMin.setOnClickListener(this);
+        oneHour.setOnClickListener(this);
+        oneDay.setOnClickListener(this);
 
-        try {
-            ClientRetrofit clientRetrofit = new ClientRetrofit();
-            clientRetrofit.loadGraphData(datumList.getCoinInfo().getName(),datumList.getRAW().getUSD().getTOSYMBOL(),100,new GraphInterface() {
-                @Override
-                public void onGraphSuccess(MyPojo myPojo) {
-                    graphDataList.addAll(Arrays.asList(myPojo.getData()));
-                    Log.d("graphData2", String.valueOf(graphDataList.size()));
 
-                    LineDataSet lineDataSet = new LineDataSet(getDataVal(), DATA_SET);
-                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-                    dataSets.add(lineDataSet);
-                    //for x-axis-
-                    XAxis xAxis = lineChart.getXAxis();
-                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                    //for Y-axis-
-                    YAxis yAxis = lineChart.getAxisLeft();
-                    yAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
-                    //rightside y-axis
-                    YAxis yAxisright = lineChart.getAxisRight();
-                    yAxisright.setEnabled(false);
-                    //color
-                    lineDataSet.setFillAlpha(80);
-                    lineDataSet.setFillColor(Color.RED);
-                    lineDataSet.setDrawCircles(false);
-                    lineDataSet.setColor(Color.RED);
-                    lineDataSet.setDrawFilled(true);
-                    lineDataSet.setDrawValues(false);
-                    //setting data
-                    LineData lineData = new LineData(dataSets);
-                    lineChart.setData(lineData);
-                    //hide background grid lines
-                    lineChart.getAxisLeft().setDrawGridLines(false);
-                    lineChart.getXAxis().setDrawGridLines(false);
-                    YAxis leftAxis = lineChart.getAxisLeft();
-                    leftAxis.setDrawAxisLine(false);
-                    lineChart.setPinchZoom(true);
-                    lineChart.setTouchEnabled(true);
-                    lineChart.invalidate();
-                }
-
-                @Override
-                public void onFailure(Throwable e) {
-                }
-            });
-        } catch (Exception e) {
-            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-        }
         final SharedPreferences pref = getApplicationContext().getSharedPreferences(MY_PREF, 0);
         final SharedPreferences.Editor editor = pref.edit();
 
@@ -173,11 +138,106 @@ public class DetailedCoinData extends AppCompatActivity {
         });
     }
 
-    private ArrayList<Entry> getDataVal() {
-        ArrayList<Entry> dataVal = new ArrayList<Entry>();
-        for (int i = 0; i < graphDataList.size(); i++) {
-            dataVal.add(new Entry(i, Float.valueOf(graphDataList.get(i).getClose())));
+//    private ArrayList<Entry> getDataVal() {
+//
+//        return dataVal;
+//    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.one_min: {
+                time="histominute";
+                oneMin.setTextColor(getResources().getColor(R.color.colorWhite));
+                oneMin.setBackgroundColor(  getResources().getColor(R.color.colorGreen));
+                oneDay.setTextColor(getResources().getColor(R.color.colorBlack));
+                oneDay.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                oneHour.setTextColor(getResources().getColor(R.color.colorBlack));
+                oneHour.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                callGraphData();
+                break;
+            }
+            case R.id.one_hour:{
+              time="histohour";
+                oneHour.setTextColor(getResources().getColor(R.color.colorWhite));
+                oneHour.setBackgroundColor(  getResources().getColor(R.color.colorGreen));
+                oneDay.setTextColor(getResources().getColor(R.color.colorBlack));
+                oneDay.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                oneMin.setTextColor(getResources().getColor(R.color.colorBlack));
+                oneMin.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+              callGraphData();
+              break;
+            }
+            case R.id.one_Day:{
+                time="histoday";
+                oneDay.setTextColor(getResources().getColor(R.color.colorWhite));
+                oneDay.setBackgroundColor(  getResources().getColor(R.color.colorGreen));
+                oneMin.setTextColor(getResources().getColor(R.color.colorBlack));
+                oneMin.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                oneHour.setTextColor(getResources().getColor(R.color.colorBlack));
+                oneHour.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+
+                callGraphData();
+                break;
+            }
         }
-        return dataVal;
+    }
+
+
+    private void callGraphData(){
+
+        try {
+            ClientRetrofit clientRetrofit = new ClientRetrofit();
+            clientRetrofit.loadGraphData(time,datumList.getCoinInfo().getName(),datumList.getRAW().getUSD().getTOSYMBOL(),100,new GraphInterface() {
+                @Override
+                public void onGraphSuccess(MyPojo myPojo) {
+//                    graphDataList.addAll(Arrays.asList(myPojo.getData()));
+//                    Log.d("graphData2", String.valueOf(graphDataList.size()));
+                    ArrayList<Entry> dataVal = new ArrayList<Entry>();
+                    for (int i = 0; i < Arrays.asList(myPojo.getData()).size(); i++) {
+                        dataVal.add(new Entry(i, Float.valueOf(Arrays.asList(myPojo.getData()).get(i).getClose())));
+                    }
+
+                    LineDataSet lineDataSet = new LineDataSet(dataVal, DATA_SET);
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    dataSets.add(lineDataSet);
+                    //for x-axis-
+                    XAxis xAxis = lineChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    //for Y-axis-
+                    YAxis yAxis = lineChart.getAxisLeft();
+                    yAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+                    //rightside y-axis
+                    YAxis yAxisright = lineChart.getAxisRight();
+                    yAxisright.setEnabled(false);
+                    //color
+                    lineDataSet.setFillAlpha(80);
+                    lineDataSet.setFillColor(Color.RED);
+                    lineDataSet.setDrawCircles(false);
+                    lineDataSet.setColor(Color.RED);
+                    lineDataSet.setDrawFilled(true);
+                    lineDataSet.setDrawValues(false);
+                    //setting data
+                    LineData lineData = new LineData(dataSets);
+                    lineChart.setData(lineData);
+                    //hide background grid lines
+                    lineChart.getAxisLeft().setDrawGridLines(false);
+                    lineChart.getXAxis().setDrawGridLines(false);
+                    YAxis leftAxis = lineChart.getAxisLeft();
+                    leftAxis.setDrawAxisLine(false);
+                    lineChart.setPinchZoom(true);
+                    lineChart.setTouchEnabled(true);
+                    lineChart.getDescription().setEnabled(false);
+                    lineChart.invalidate();
+                }
+
+                @Override
+                public void onFailure(Throwable e) {
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

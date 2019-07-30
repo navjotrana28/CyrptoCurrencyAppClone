@@ -71,9 +71,7 @@
             android:id="@+id/detail_coin_symbol_image"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_image"
-            android:layout_marginStart="@dimen/margin_left_image"
             android:layout_marginLeft="@dimen/margin_left_image"
-            android:layout_marginEnd="@dimen/margin_end_image_view"
             android:layout_marginRight="@dimen/margin_right_image_view"
             android:src="@mipmap/app_dp_round"
             app:layout_constraintBottom_toBottomOf="@+id/detail_constraint_follow"
@@ -144,10 +142,55 @@
             android:id="@+id/line_chart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/chart_height"
-            app:layout_constraintBottom_toBottomOf="@id/detail_graph_bar"
+            app:layout_constraintBottom_toTopOf="@id/one_min"
             app:layout_constraintTop_toTopOf="@id/detail_graph_bar">
 
         </com.github.mikephil.charting.charts.LineChart>
+        <Button
+            android:id="@+id/one_min"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:text="1 Min"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:textAlignment="center"
+            android:onClick="onClick"
+            android:background="@color/colorGreen"
+            app:layout_constraintRight_toLeftOf="@+id/one_hour"
+            app:layout_constraintTop_toBottomOf="@id/line_chart"
+            app:layout_constraintLeft_toLeftOf="@+id/detail_graph_bar"
+            app:layout_constraintBottom_toBottomOf="@id/detail_graph_bar"
+            />
+        <Button
+            android:id="@+id/one_hour"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:text="1 H"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            android:textAlignment="center"
+            android:onClick="onClick"
+            android:background="@color/colorWhite"
+            app:layout_constraintTop_toBottomOf="@id/line_chart"
+            app:layout_constraintLeft_toRightOf="@+id/one_min"
+            app:layout_constraintRight_toLeftOf="@id/one_Day"
+            app:layout_constraintBottom_toBottomOf="@id/detail_graph_bar"
+            />
+        <Button
+            android:id="@+id/one_Day"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:text="1 D"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            android:textAlignment="center"
+            android:onClick="onClick"
+            android:background="@color/colorWhite"
+            app:layout_constraintRight_toRightOf="@id/detail_graph_bar"
+            app:layout_constraintTop_toBottomOf="@id/line_chart"
+            app:layout_constraintLeft_toRightOf="@+id/one_hour"
+            app:layout_constraintBottom_toBottomOf="@id/detail_graph_bar"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
