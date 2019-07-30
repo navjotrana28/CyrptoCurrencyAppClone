@@ -25,13 +25,17 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DetailedCoinData extends AppCompatActivity implements View.OnClickListener {
+import static com.example.cryptocompare.R.layout.marker_view;
+
+public class DetailedCoinData extends AppCompatActivity implements View.OnClickListener,OnChartValueSelectedListener {
     public static final String COIN_DATA = "coin_data";
     public static final String HTTPS_WWW_CRYPTOCOMPARE_COM = "https://www.cryptocompare.com";
     public static final String DATA_SET = "dataSet";
@@ -163,7 +167,7 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
                 oneHour.setTextColor(getResources().getColor(R.color.colorWhite));
                 oneHour.setBackgroundColor(  getResources().getColor(R.color.colorGreen));
                 oneDay.setTextColor(getResources().getColor(R.color.colorBlack));
-                oneDay.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                oneDay.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                 oneMin.setTextColor(getResources().getColor(R.color.colorBlack));
                 oneMin.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
               callGraphData();
@@ -172,11 +176,11 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
             case R.id.one_Day:{
                 time="histoday";
                 oneDay.setTextColor(getResources().getColor(R.color.colorWhite));
-                oneDay.setBackgroundColor(  getResources().getColor(R.color.colorGreen));
+                oneDay.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 oneMin.setTextColor(getResources().getColor(R.color.colorBlack));
-                oneMin.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                oneMin.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                 oneHour.setTextColor(getResources().getColor(R.color.colorBlack));
-                oneHour.setBackgroundColor(  getResources().getColor(R.color.colorWhite));
+                oneHour.setBackgroundColor(getResources().getColor(R.color.colorWhite));
 
                 callGraphData();
                 break;
@@ -200,7 +204,7 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
                     }
 
                     LineDataSet lineDataSet = new LineDataSet(dataVal, DATA_SET);
-                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    final ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(lineDataSet);
                     //for x-axis-
                     XAxis xAxis = lineChart.getXAxis();
@@ -229,6 +233,14 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
                     lineChart.setPinchZoom(true);
                     lineChart.setTouchEnabled(true);
                     lineChart.getDescription().setEnabled(false);
+
+                    lineChart.setTouchEnabled(true);
+                    lineChart.setOnChartValueSelectedListener(DetailedCoinData.this);
+                    MyMarkerView mv =new MyMarkerView(getApplicationContext(), marker_view);
+                    mv.setChartView(lineChart);
+                    lineChart.setMarker(mv);
+                    lineChart.setDragEnabled(true);
+                    lineChart.setScaleEnabled(true);
                     lineChart.invalidate();
                 }
 
@@ -239,5 +251,15 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+
+    }
+
+    @Override
+    public void onNothingSelected() {
+
     }
 }
