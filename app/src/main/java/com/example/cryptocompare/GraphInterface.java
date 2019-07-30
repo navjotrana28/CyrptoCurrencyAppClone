@@ -1,6 +1,4 @@
 package com.example.cryptocompare;
-
-
 import com.example.cryptocompare.graphResponse.MyPojo;
 
 public interface GraphInterface {

@@ -6,4 +6,27 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" />
+    <string name="bitcoin">Bitcoin</string>
+    <string name="_9807_01">9807.01</string>
+    <string name="_2_80">-2.80%</string>
+    <string name="follow">Follow</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="total_vol_24h">Total Vol.24h</string>
+    <string name="direct_vol_24h">Direct Vol.24h</string>
+    <string name="direct_vol">Direct Vol.24h $</string>
+    <string name="open_24h">Open 24h $</string>
+    <string name="low_high_24h">Low/High 24h $</string>
+    <string name="_174_94_b">174.94 B</string>
+    <string name="_284_12_k">284.12 K</string>
+    <string name="_36_106_4">36.106.4</string>
+    <string name="_10_089_8">10,089.8</string>
+    <string name="_357_174_519_3">357,174,519.3</string>
+    <string name="_9_648_55">9,648.55</string>
+    <string name="usd">USD</string>
+    <string name="following">Following</string>
+    <string name="top_volume">Top Volume</string>
+    <string name="news">News</string>
+    <string name="cryptonewsz">CryptoNewsZ</string>
+    <string name="bitcoin_maintains_its_trent_of_oscillation_and_trades_with_upper_swing">Bitcoin maintains its trent of oscillation and trades with upper swing</string>
+    <string name="btc_market_altcoin">BTC|Market|Altcoin</string>
 </resources>

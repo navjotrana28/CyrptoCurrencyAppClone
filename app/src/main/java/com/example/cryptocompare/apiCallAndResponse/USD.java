@@ -1,4 +1,5 @@
 package com.example.cryptocompare.apiCallAndResponse;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,6 +8,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class USD implements Parcelable {
 
+    public static final Parcelable.Creator<USD> CREATOR = new Parcelable.Creator<USD>() {
+        @Override
+        public USD createFromParcel(Parcel source) {
+            return new USD(source);
+        }
+
+        @Override
+        public USD[] newArray(int size) {
+            return new USD[size];
+        }
+    };
     @SerializedName("TYPE")
     @Expose
     private String tYPE;
@@ -124,6 +136,51 @@ public class USD implements Parcelable {
     @SerializedName("IMAGEURL")
     @Expose
     private String iMAGEURL;
+
+    public USD() {
+    }
+
+    protected USD(Parcel in) {
+        this.tYPE = in.readString();
+        this.mARKET = in.readString();
+        this.fROMSYMBOL = in.readString();
+        this.tOSYMBOL = in.readString();
+        this.fLAGS = in.readString();
+        this.pRICE = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTUPDATE = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.lASTVOLUME = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTVOLUMETO = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTTRADEID = in.readString();
+        this.vOLUMEDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUMEDAYTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUME24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUME24HOURTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.oPENDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.hIGHDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.lOWDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.oPEN24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.hIGH24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.lOW24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.lASTMARKET = in.readString();
+        this.vOLUMEHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.vOLUMEHOURTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.oPENHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.hIGHHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.lOWHOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOPTIERVOLUME24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOPTIERVOLUME24HOURTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGE24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGEPCT24HOUR = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGEDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.cHANGEPCTDAY = (Double) in.readValue(Double.class.getClassLoader());
+        this.sUPPLY = (Double) in.readValue(Double.class.getClassLoader());
+        this.mKTCAP = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALVOLUME24H = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALVOLUME24HTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALTOPTIERVOLUME24H = (Double) in.readValue(Double.class.getClassLoader());
+        this.tOTALTOPTIERVOLUME24HTO = (Double) in.readValue(Double.class.getClassLoader());
+        this.iMAGEURL = in.readString();
+    }
 
     public String getTYPE() {
         return tYPE;
@@ -484,61 +541,4 @@ public class USD implements Parcelable {
         dest.writeValue(this.tOTALTOPTIERVOLUME24HTO);
         dest.writeString(this.iMAGEURL);
     }
-
-    public USD() {
-    }
-
-    protected USD(Parcel in) {
-        this.tYPE = in.readString();
-        this.mARKET = in.readString();
-        this.fROMSYMBOL = in.readString();
-        this.tOSYMBOL = in.readString();
-        this.fLAGS = in.readString();
-        this.pRICE = (Double) in.readValue(Double.class.getClassLoader());
-        this.lASTUPDATE = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.lASTVOLUME = (Double) in.readValue(Double.class.getClassLoader());
-        this.lASTVOLUMETO = (Double) in.readValue(Double.class.getClassLoader());
-        this.lASTTRADEID = in.readString();
-        this.vOLUMEDAY = (Double) in.readValue(Double.class.getClassLoader());
-        this.vOLUMEDAYTO = (Double) in.readValue(Double.class.getClassLoader());
-        this.vOLUME24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.vOLUME24HOURTO = (Double) in.readValue(Double.class.getClassLoader());
-        this.oPENDAY = (Double) in.readValue(Double.class.getClassLoader());
-        this.hIGHDAY = (Double) in.readValue(Double.class.getClassLoader());
-        this.lOWDAY = (Double) in.readValue(Double.class.getClassLoader());
-        this.oPEN24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.hIGH24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.lOW24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.lASTMARKET = in.readString();
-        this.vOLUMEHOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.vOLUMEHOURTO = (Double) in.readValue(Double.class.getClassLoader());
-        this.oPENHOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.hIGHHOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.lOWHOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.tOPTIERVOLUME24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.tOPTIERVOLUME24HOURTO = (Double) in.readValue(Double.class.getClassLoader());
-        this.cHANGE24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.cHANGEPCT24HOUR = (Double) in.readValue(Double.class.getClassLoader());
-        this.cHANGEDAY = (Double) in.readValue(Double.class.getClassLoader());
-        this.cHANGEPCTDAY = (Double) in.readValue(Double.class.getClassLoader());
-        this.sUPPLY = (Double) in.readValue(Double.class.getClassLoader());
-        this.mKTCAP = (Double) in.readValue(Double.class.getClassLoader());
-        this.tOTALVOLUME24H = (Double) in.readValue(Double.class.getClassLoader());
-        this.tOTALVOLUME24HTO = (Double) in.readValue(Double.class.getClassLoader());
-        this.tOTALTOPTIERVOLUME24H = (Double) in.readValue(Double.class.getClassLoader());
-        this.tOTALTOPTIERVOLUME24HTO = (Double) in.readValue(Double.class.getClassLoader());
-        this.iMAGEURL = in.readString();
-    }
-
-    public static final Parcelable.Creator<USD> CREATOR = new Parcelable.Creator<USD>() {
-        @Override
-        public USD createFromParcel(Parcel source) {
-            return new USD(source);
-        }
-
-        @Override
-        public USD[] newArray(int size) {
-            return new USD[size];
-        }
-    };
 }

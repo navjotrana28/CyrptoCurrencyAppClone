@@ -3,9 +3,9 @@ package com.example.cryptocompare.api;
 import android.util.Log;
 
 import com.example.cryptocompare.GraphInterface;
+import com.example.cryptocompare.InterfaceCallback;
 import com.example.cryptocompare.NewsInterface;
 import com.example.cryptocompare.apiCallAndResponse.Example;
-import com.example.cryptocompare.InterfaceCallback;
 import com.example.cryptocompare.graphResponse.MyPojo;
 import com.example.cryptocompare.newsResponse.NewsResult;
 
@@ -19,11 +19,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ClientRetrofit {
 
-    public static final String BASE_URL = "https://min-api.cryptocompare.com";
+    private static final String BASE_URL = "https://min-api.cryptocompare.com";
     private static final String API = "33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e3b6958d1620e17445";
 
-    public static Retrofit retrofit = null;
-    public final ServiceRetrofit serviceRetrofit;
+    private static Retrofit retrofit = null;
+    private final ServiceRetrofit serviceRetrofit;
 
     public ClientRetrofit() {
         if (retrofit == null) {
@@ -58,7 +58,7 @@ public class ClientRetrofit {
     }
 
     public void loadNewsData(final NewsInterface newsInterface) {
-        Log.d("result","resultthere");
+        Log.d("result", "resultthere");
 
         serviceRetrofit.getNewsData(API)
                 .subscribeOn(Schedulers.io())
@@ -75,17 +75,16 @@ public class ClientRetrofit {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("result",e.getLocalizedMessage());
+                        Log.d("result", e.getLocalizedMessage());
 
                     }
                 });
     }
 
+    public void loadGraphData(String coinSymbol,String coinUsd,int limit,final GraphInterface graphInterface) {
+        Log.d("graphresult", coinSymbol);
 
-    public void loadGraphData(final GraphInterface graphInterface) {
-        Log.d("graphresult","resultthere");
-
-        serviceRetrofit.getGraphData(API)
+        serviceRetrofit.getGraphData(coinSymbol,coinUsd,limit,API)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<MyPojo>() {
@@ -95,40 +94,15 @@ public class ClientRetrofit {
 
                     @Override
                     public void onSuccess(MyPojo myPojo) {
-                        Log.d("graphresultsuccess","resultthere");
+                        Log.d("graphresultsuccess", "resultthere");
                         graphInterface.onGraphSuccess(myPojo);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("result",e.getLocalizedMessage());
+                        Log.d("result", e.getLocalizedMessage());
 
                     }
                 });
     }
 }
-//        try{
-//            ServiceRetrofit apiService= ClientRetrofit.getClient().create(ServiceRetrofit.class);
-//            Call<Example> call =apiService.getTopVolumeData(API);
-//            call.enqueue(new Callback<Example>() {
-//                @Override
-//                public void onResponse(Call<Example> call, Response<Example> response) {
-//                    Example example=response.body();
-//                    datumList.addAll(example.getData());
-//                    Log.d("coinData", String.valueOf(example.getData()));
-
-//                    topVolumeAdapter.notifyDataSetChanged();
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Example> call, Throwable t) {
-//                    Toast.makeText(getActivity(),"Error Fetching Data", Toast.LENGTH_SHORT).show();
-//                    t.printStackTrace();
-//                }
-//            });
-//        }catch (Exception e){
-//            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-//
-//        }
-//    }
-//}

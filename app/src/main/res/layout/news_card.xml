@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_height="@dimen/height_layout_news_card"
+        android:layout_marginEnd="@dimen/marginEnd_news_card"
+        android:layout_marginRight="@dimen/margin_right_newsCard">
+
         <ImageView
             android:id="@+id/news_image"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/width_image_newsCard"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/marginLeft_image_newscard"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:scaleType="centerInside"
-            />
+            android:layout_marginStart="@dimen/margin_start_iage_news" />
+
         <TextView
             android:id="@+id/news_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CryptoNewsZ"
-            android:textSize="12dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="@dimen/margin_left_newsname"
+            android:layout_marginTop="@dimen/margintop_newsname"
+            android:text="@string/cryptonewsz"
             android:textColor="@color/colorBlack"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/text_size_news_type"
             app:layout_constraintLeft_toRightOf="@+id/news_image"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/margin_start_news_type" />
 
-            />
         <TextView
             android:id="@+id/news_headlines"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/margin_width_newsheadlines"
             android:layout_height="wrap_content"
-            android:text="Bitcoin maintains its trent of oscillation and trades with upper swing"
-            android:textSize="13dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
-            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="@dimen/margin_left_newsheadlines"
+            android:layout_marginTop="@dimen/margin_top_newsheadlines"
             android:paddingBottom="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/news_type"
+            android:text="@string/bitcoin_maintains_its_trent_of_oscillation_and_trades_with_upper_swing"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_newsheadlines"
             app:layout_constraintLeft_toRightOf="@+id/news_image"
             app:layout_constraintRight_toRightOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/news_type"
+            android:layout_marginStart="@dimen/margin_start_news_headlines" />
+
         <TextView
             android:id="@+id/news_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BTC|Market|Altcoin"
-            android:textSize="12sp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/margin_left_news_category"
             android:layout_marginBottom="12dp"
-            app:layout_constraintLeft_toRightOf="@+id/news_image"
+            android:text="@string/btc_market_altcoin"
+            android:textSize="@dimen/textsize_news_category"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintLeft_toRightOf="@+id/news_image" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/colorLightGrey"
             android:layout_marginTop="6dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/colorLightGrey"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>

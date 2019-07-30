@@ -5,100 +5,102 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintlayoutsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_top_searchbar"
         app:layout_constraintBottom_toTopOf="@+id/downsearchview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusableInTouchMode="true"
         >
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@mipmap/app_dp_round"
+            android:layout_height="@dimen/layout_height_main"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
+            android:src="@mipmap/app_dp_round"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
             app:layout_constraintLeft_toLeftOf="@+id/constraintlayoutsearch"
-            />
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch" />
+
         <SearchView
             android:id="@+id/searchBar"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="15dp"
-            android:queryHint="Search"
-            android:iconifiedByDefault="false"
+            android:layout_width="@dimen/searchview_width"
+            android:layout_height="@dimen/search_view_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="@dimen/margin_left_searchview"
+            android:layout_marginTop="@dimen/margin_top_searchView"
+            android:layout_marginEnd="@dimen/margin_right_search_view"
+            android:layout_marginRight="@dimen/margin_right_search_view"
             android:background="@color/colorLightestGrey"
-            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search"
+            android:textSize="@dimen/search_view_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
             app:layout_constraintLeft_toRightOf="@+id/imageView1"
             app:layout_constraintRight_toLeftOf="@+id/usdTag"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
-            />
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch" />
+
         <TextView
             android:id="@+id/usdTag"
-            android:text="USD"
-            android:textSize="16dp"
-            android:layout_marginRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/marginend_usdmain"
+            android:layout_marginRight="@dimen/marginRight_usd"
+            android:text="@string/usd"
             android:textColor="@color/colorBlack"
-            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch"
+            android:textSize="@dimen/text_size_usdmain"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutsearch"
             app:layout_constraintRight_toRightOf="@+id/constraintlayoutsearch"
-            />
+            app:layout_constraintTop_toTopOf="@+id/constraintlayoutsearch" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:id="@+id/downsearchview"
         android:layout_width="match_parent"
-        android:layout_height="0.1px"
+        android:layout_height="@dimen/height_viewmain"
+        android:layout_marginTop="@dimen/margintop_viewmain"
+        android:layout_marginBottom="@dimen/margin_bottom_view"
         android:background="@color/colorLightGrey"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutsearch"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/constraintlayoutFollowing"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/constraintlayoutFollowing"
-        android:visibility="visible"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutsearch" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintlayoutFollowing"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/layout_following_width"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_left_layout"
+        android:layout_marginRight="@dimen/margin_right_layoutfollowing"
+        android:layout_marginBottom="@dimen/marginbottom_layoutfollowing"
         app:layout_constraintBottom_toTopOf="@+id/insertFragmentHere"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-         android:layout_marginBottom="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         app:layout_constraintTop_toBottomOf="@+id/downsearchview">
 
         <TextView
             android:id="@+id/following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="@dimen/margin_start_following"
+            android:layout_marginLeft="@dimen/margin_left_following"
             android:background="@color/colorGreen"
-            android:paddingLeft="63dp"
-            android:paddingTop="5dp"
-            android:paddingRight="65dp"
-            android:paddingBottom="5dp"
-            android:text="Following"
+            android:paddingLeft="@dimen/paddingleft_follong"
+            android:paddingTop="@dimen/padding__top_following"
+            android:paddingRight="@dimen/paddingright_following"
+            android:paddingBottom="@dimen/paddingbottom_following"
+            android:text="@string/following"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
+            android:textSize="@dimen/text_size_following"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
             app:layout_constraintLeft_toLeftOf="@id/constraintlayoutFollowing"
             app:layout_constraintRight_toLeftOf="@+id/top_volume"
@@ -108,15 +110,16 @@
             android:id="@+id/top_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="@dimen/margin_end_top_volume"
+            android:layout_marginRight="@dimen/margin_right_following"
             android:background="@color/colorWhite"
-            android:paddingLeft="65dp"
-            android:paddingTop="5dp"
-            android:paddingRight="63dp"
-            android:paddingBottom="5dp"
-            android:text="Top Volume"
-            android:textSize="14dp"
+            android:paddingLeft="@dimen/paddingleft_topvolume"
+            android:paddingTop="@dimen/paddingtop_top_volume"
+            android:paddingRight="@dimen/paddingRight_top_volume"
+            android:paddingBottom="@dimen/paddingBOttom_top_volume"
+            android:text="@string/top_volume"
             android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_top_volume"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayoutFollowing"
             app:layout_constraintLeft_toRightOf="@+id/following"
             app:layout_constraintRight_toRightOf="parent"
@@ -126,33 +129,35 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/insertFragmentHere"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutFollowing"
+        android:layout_width="@dimen/width_insertfragment"
+        android:layout_height="@dimen/height_insertFragennt"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view">
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayoutFollowing">
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/insertFragmentHere"
             android:layout_marginTop="50dp"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            android:visibility="gone" />
+            android:minWidth="@dimen/min_width_progresbar"
+            android:minHeight="@dimen/min_height_progressbar"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/insertFragmentHere" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/width_nav"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="@dimen/margin_start_nav"
+        android:layout_marginLeft="@dimen/margin_start_nav"
+        android:layout_marginEnd="@dimen/margin_end_nav"
+        android:layout_marginRight="@dimen/margin_right_na"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

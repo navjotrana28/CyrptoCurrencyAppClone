@@ -1,7 +1,6 @@
 package com.example.cryptocompare.graphResponse;
 
-public class MyPojo
-{
+public class MyPojo {
     private String Response;
 
     private String Type;
@@ -20,101 +19,81 @@ public class MyPojo
 
     private Data[] Data;
 
-    public String getResponse ()
-    {
+    public String getResponse() {
         return Response;
     }
 
-    public void setResponse (String Response)
-    {
+    public void setResponse(String Response) {
         this.Response = Response;
     }
 
 
-
-    public String getType ()
-    {
+    public String getType() {
         return Type;
     }
 
-    public void setType (String Type)
-    {
+    public void setType(String Type) {
         this.Type = Type;
     }
 
-    public String getFirstValueInArray ()
-    {
+    public String getFirstValueInArray() {
         return FirstValueInArray;
     }
 
-    public void setFirstValueInArray (String FirstValueInArray)
-    {
+    public void setFirstValueInArray(String FirstValueInArray) {
         this.FirstValueInArray = FirstValueInArray;
     }
 
-    public ConversionType getConversionType ()
-    {
+    public ConversionType getConversionType() {
         return ConversionType;
     }
 
-    public void setConversionType (ConversionType ConversionType)
-    {
+    public void setConversionType(ConversionType ConversionType) {
         this.ConversionType = ConversionType;
     }
 
-    public String getAggregated ()
-    {
+    public String getAggregated() {
         return Aggregated;
     }
 
-    public void setAggregated (String Aggregated)
-    {
+    public void setAggregated(String Aggregated) {
         this.Aggregated = Aggregated;
     }
 
-    public String getTimeFrom ()
-    {
+    public String getTimeFrom() {
         return TimeFrom;
     }
 
-    public void setTimeFrom (String TimeFrom)
-    {
+    public void setTimeFrom(String TimeFrom) {
         this.TimeFrom = TimeFrom;
     }
 
-    public String getTimeTo ()
-    {
+    public String getTimeTo() {
         return TimeTo;
     }
 
-    public void setTimeTo (String TimeTo)
-    {
+    public void setTimeTo(String TimeTo) {
         this.TimeTo = TimeTo;
     }
 
-    public String getHasWarning ()
-    {
+    public String getHasWarning() {
         return HasWarning;
     }
 
-    public void setHasWarning (String HasWarning)
-    {
+    public void setHasWarning(String HasWarning) {
         this.HasWarning = HasWarning;
     }
 
-    public Data[] getData()
-    {
+    public Data[] getData() {
         return Data;
     }
 
-    public void setData(Data[] Data)
-    {
+    public void setData(Data[] Data) {
         this.Data = Data;
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [Response = "+Response+", Type = "+Type+", FirstValueInArray = "+FirstValueInArray+", ConversionType = "+ConversionType+", Aggregated = "+Aggregated+", TimeFrom = "+TimeFrom+", TimeTo = "+TimeTo+", HasWarning = "+HasWarning+", Data = "+ Data +"]";
+    public String toString() {
+        return "ClassPojo [Response = " + Response + ", Type = " + Type + ", FirstValueInArray = " + FirstValueInArray + ", ConversionType = " + ConversionType + ", Aggregated = " + Aggregated + ", TimeFrom = " + TimeFrom + ", TimeTo = " + TimeTo + ", HasWarning = " + HasWarning + ", Data = " + Data + "]";
     }
 }

@@ -1,4 +1,5 @@
 package com.example.cryptocompare.apiCallAndResponse;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,6 +8,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class CoinInfo implements Parcelable {
 
+    public static final Parcelable.Creator<CoinInfo> CREATOR = new Parcelable.Creator<CoinInfo>() {
+        @Override
+        public CoinInfo createFromParcel(Parcel source) {
+            return new CoinInfo(source);
+        }
+
+        @Override
+        public CoinInfo[] newArray(int size) {
+            return new CoinInfo[size];
+        }
+    };
     @SerializedName("Id")
     @Expose
     private String id;
@@ -49,6 +61,26 @@ public class CoinInfo implements Parcelable {
     @SerializedName("DocumentType")
     @Expose
     private String documentType;
+
+    public CoinInfo() {
+    }
+
+    protected CoinInfo(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.fullName = in.readString();
+        this.internal = in.readString();
+        this.imageUrl = in.readString();
+        this.url = in.readString();
+        this.algorithm = in.readString();
+        this.proofType = in.readString();
+        this.netHashesPerSecond = (Double) in.readValue(Double.class.getClassLoader());
+        this.blockNumber = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.blockTime = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.blockReward = (Double) in.readValue(Double.class.getClassLoader());
+        this.type = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.documentType = in.readString();
+    }
 
     public String getId() {
         return id;
@@ -184,36 +216,4 @@ public class CoinInfo implements Parcelable {
         dest.writeValue(this.type);
         dest.writeString(this.documentType);
     }
-
-    public CoinInfo() {
-    }
-
-    protected CoinInfo(Parcel in) {
-        this.id = in.readString();
-        this.name = in.readString();
-        this.fullName = in.readString();
-        this.internal = in.readString();
-        this.imageUrl = in.readString();
-        this.url = in.readString();
-        this.algorithm = in.readString();
-        this.proofType = in.readString();
-        this.netHashesPerSecond = (Double) in.readValue(Double.class.getClassLoader());
-        this.blockNumber = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.blockTime = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.blockReward = (Double) in.readValue(Double.class.getClassLoader());
-        this.type = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.documentType = in.readString();
-    }
-
-    public static final Parcelable.Creator<CoinInfo> CREATOR = new Parcelable.Creator<CoinInfo>() {
-        @Override
-        public CoinInfo createFromParcel(Parcel source) {
-            return new CoinInfo(source);
-        }
-
-        @Override
-        public CoinInfo[] newArray(int size) {
-            return new CoinInfo[size];
-        }
-    };
 }

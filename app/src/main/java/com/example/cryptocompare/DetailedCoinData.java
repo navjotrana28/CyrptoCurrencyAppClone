@@ -29,14 +29,21 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 public class DetailedCoinData extends AppCompatActivity {
-    private  ArrayList<Data> graphDataList = new ArrayList();
+    public static final String COIN_DATA = "coin_data";
+    public static final String HTTPS_WWW_CRYPTOCOMPARE_COM = "https://www.cryptocompare.com";
+    public static final String DATA_SET = "dataSet";
+    public static final String MY_PREF = "MyPref";
+    public static final String FOLLOWING = "Following";
+    public static final String FOLLOW = "Follow";
+    public static final String REMOVED = " removed";
+    public static final String ADDED = " Added";
     LineChart lineChart;
     Datum datumList;
     ImageView coinImage, detailBackSign;
     TextView detailCoinName, detailTotalVolPrize, detailPercentPrize, detailmarket, detailtotalvol, detailDirectVol, detailDirectDollar, detailOpen, detailLow, followButton;
+    private ArrayList<Data> graphDataList = new ArrayList();
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -58,8 +65,8 @@ public class DetailedCoinData extends AppCompatActivity {
         lineChart = findViewById(R.id.line_chart);
 
         Intent intentStartedActivity = getIntent();
-        if (intentStartedActivity.hasExtra("coin_data")) {
-            datumList = getIntent().getParcelableExtra("coin_data");
+        if (intentStartedActivity.hasExtra(COIN_DATA)) {
+            datumList = getIntent().getParcelableExtra(COIN_DATA);
             Log.d("frag", String.valueOf(datumList));
         }
 
@@ -72,9 +79,9 @@ public class DetailedCoinData extends AppCompatActivity {
         detailOpen.setText(datumList.getDISPLAY().getUSD().getOPEN24HOUR());
         detailLow.setText(datumList.getDISPLAY().getUSD().getLOW24HOUR());
         Picasso.get()
-                .load("https://www.cryptocompare.com" + datumList.getCoinInfo().getImageUrl())
+                .load(HTTPS_WWW_CRYPTOCOMPARE_COM + datumList.getCoinInfo().getImageUrl())
                 .placeholder(R.drawable.ic_launcher_foreground)
-                .resize(400, 190)
+                .resize(500, 200)
                 .centerInside()
                 .into(coinImage);
 
@@ -85,17 +92,15 @@ public class DetailedCoinData extends AppCompatActivity {
             }
         });
 
-
         try {
             ClientRetrofit clientRetrofit = new ClientRetrofit();
-            clientRetrofit.loadGraphData(new GraphInterface() {
+            clientRetrofit.loadGraphData(datumList.getCoinInfo().getName(),datumList.getRAW().getUSD().getTOSYMBOL(),100,new GraphInterface() {
                 @Override
                 public void onGraphSuccess(MyPojo myPojo) {
                     graphDataList.addAll(Arrays.asList(myPojo.getData()));
                     Log.d("graphData2", String.valueOf(graphDataList.size()));
 
-
-                    LineDataSet lineDataSet = new LineDataSet(getDataVal(), "dataSet");
+                    LineDataSet lineDataSet = new LineDataSet(getDataVal(), DATA_SET);
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(lineDataSet);
                     //for x-axis-
@@ -114,7 +119,7 @@ public class DetailedCoinData extends AppCompatActivity {
                     lineDataSet.setColor(Color.RED);
                     lineDataSet.setDrawFilled(true);
                     lineDataSet.setDrawValues(false);
-//setting data
+                    //setting data
                     LineData lineData = new LineData(dataSets);
                     lineChart.setData(lineData);
                     //hide background grid lines
@@ -123,6 +128,7 @@ public class DetailedCoinData extends AppCompatActivity {
                     YAxis leftAxis = lineChart.getAxisLeft();
                     leftAxis.setDrawAxisLine(false);
                     lineChart.setPinchZoom(true);
+                    lineChart.setTouchEnabled(true);
                     lineChart.invalidate();
                 }
 
@@ -132,41 +138,33 @@ public class DetailedCoinData extends AppCompatActivity {
             });
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-
         }
-        final SharedPreferences pref=getApplicationContext().getSharedPreferences("MyPref",0);
-        final SharedPreferences.Editor editor=pref.edit();
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences(MY_PREF, 0);
+        final SharedPreferences.Editor editor = pref.edit();
 
-        if(pref.contains(datumList.getCoinInfo().getId()))
-        {
-            followButton.setText("Following");
+        if (pref.contains(datumList.getCoinInfo().getId())) {
+            followButton.setText(FOLLOWING);
             followButton.setTextColor(getResources().getColor(R.color.colorWhite));
             followButton.setBackground(getResources().getDrawable(R.drawable.rounded_border_greenfollow));
         }
-
 //graph
-
         followButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //followButton.setTextColor(getResources().getColor(R.color.colorWhite));
 
-                if(pref.contains(datumList.getCoinInfo().getId())) {
-                    followButton.setText("Follow");
+                if (pref.contains(datumList.getCoinInfo().getId())) {
+                    followButton.setText(FOLLOW);
                     followButton.setBackground(getResources().getDrawable(R.drawable.rounded_border_follow));
                     followButton.setTextColor(getResources().getColor(R.color.colorBlack));
-
-                    Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" removed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), datumList.getCoinInfo().getFullName() + REMOVED, Toast.LENGTH_SHORT).show();
                     editor.remove(datumList.getCoinInfo().getId());
                     editor.commit();
 
-                }else{
-                    followButton.setText("Following");
+                } else {
+                    followButton.setText(FOLLOWING);
                     followButton.setTextColor(getResources().getColor(R.color.colorWhite));
                     followButton.setBackground(getResources().getDrawable(R.drawable.rounded_border_greenfollow));
-
-
-                    Toast.makeText(view.getContext(),datumList.getCoinInfo().getFullName()+" Added",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), datumList.getCoinInfo().getFullName() + ADDED, Toast.LENGTH_SHORT).show();
                     editor.putString(datumList.getCoinInfo().getId(), datumList.getCoinInfo().getFullName());
                     editor.commit();
                     Log.d("saved pref", editor.toString());
@@ -175,13 +173,10 @@ public class DetailedCoinData extends AppCompatActivity {
         });
     }
 
-
-
-
     private ArrayList<Entry> getDataVal() {
         ArrayList<Entry> dataVal = new ArrayList<Entry>();
         for (int i = 0; i < graphDataList.size(); i++) {
-            dataVal.add(new Entry(i, Float.valueOf(graphDataList.get(i).getHigh())));
+            dataVal.add(new Entry(i, Float.valueOf(graphDataList.get(i).getClose())));
         }
         return dataVal;
     }

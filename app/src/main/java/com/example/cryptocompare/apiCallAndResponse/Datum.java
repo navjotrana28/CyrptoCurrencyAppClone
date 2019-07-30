@@ -1,4 +1,5 @@
 package com.example.cryptocompare.apiCallAndResponse;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,6 +8,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Datum implements Parcelable {
 
+    public static final Parcelable.Creator<Datum> CREATOR = new Parcelable.Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel source) {
+            return new Datum(source);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
     @SerializedName("CoinInfo")
     @Expose
     private CoinInfo coinInfo;
@@ -16,6 +28,15 @@ public class Datum implements Parcelable {
     @SerializedName("DISPLAY")
     @Expose
     private DISPLAY dISPLAY;
+
+    public Datum() {
+    }
+
+    protected Datum(Parcel in) {
+        this.coinInfo = in.readParcelable(CoinInfo.class.getClassLoader());
+        this.rAW = in.readParcelable(RAW.class.getClassLoader());
+        this.dISPLAY = in.readParcelable(DISPLAY.class.getClassLoader());
+    }
 
     public CoinInfo getCoinInfo() {
         return coinInfo;
@@ -49,28 +70,7 @@ public class Datum implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.coinInfo, flags);
-        dest.writeParcelable( this.rAW, flags);
-        dest.writeParcelable( this.dISPLAY, flags);
+        dest.writeParcelable(this.rAW, flags);
+        dest.writeParcelable(this.dISPLAY, flags);
     }
-
-    public Datum() {
-    }
-
-    protected Datum(Parcel in) {
-        this.coinInfo = in.readParcelable(CoinInfo.class.getClassLoader());
-        this.rAW = in.readParcelable(RAW.class.getClassLoader());
-        this.dISPLAY = in.readParcelable(DISPLAY.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<Datum> CREATOR = new Parcelable.Creator<Datum>() {
-        @Override
-        public Datum createFromParcel(Parcel source) {
-            return new Datum(source);
-        }
-
-        @Override
-        public Datum[] newArray(int size) {
-            return new Datum[size];
-        }
-    };
 }

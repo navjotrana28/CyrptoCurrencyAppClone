@@ -6,8 +6,8 @@ import com.example.cryptocompare.newsResponse.NewsResult;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
-
 
 
 public interface ServiceRetrofit {
@@ -20,13 +20,14 @@ public interface ServiceRetrofit {
             @Query("api_key") String apiKey);
 
     @GET("/data/v2/news/?lang=EN")
-    Single<NewsResult>getNewsData(
+    Single<NewsResult> getNewsData(
 
             @Query("api_key") String apikey);
 
-    @GET("/data/histoday?fsym=BTC&tsym=USD&limit=99")
-    Single<MyPojo>getGraphData(
-
-     @Query("api_key") String apikey);
-
+    @GET("/data/histoday")
+    Single<MyPojo> getGraphData(
+            @Query("fsym") String coinSymbol,
+            @Query("tsym") String coinusd,
+            @Query("limit") int limit,
+            @Query("api_key") String apikey);
 }
