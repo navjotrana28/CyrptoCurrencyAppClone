@@ -2,9 +2,9 @@ package com.example.cryptocompare.api;
 
 import android.util.Log;
 
-import com.example.cryptocompare.GraphInterface;
-import com.example.cryptocompare.InterfaceCallback;
-import com.example.cryptocompare.NewsInterface;
+import com.example.cryptocompare.interfaces.GraphInterface;
+import com.example.cryptocompare.interfaces.InterfaceCallback;
+import com.example.cryptocompare.interfaces.NewsInterface;
 import com.example.cryptocompare.apiCallAndResponse.Example;
 import com.example.cryptocompare.graphResponse.MyPojo;
 import com.example.cryptocompare.newsResponse.NewsResult;
@@ -23,7 +23,7 @@ public class ClientRetrofit {
     private static final String API = "33354f1d432a0dcf2185b2dee2554f06ee3a2b1490c1e5e3b6958d1620e17445";
 
     private static Retrofit retrofit = null;
-    private final ServiceRetrofit serviceRetrofit;
+    private static  ServiceRetrofit serviceRetrofit = null;
 
     public ClientRetrofit() {
         if (retrofit == null) {
@@ -35,8 +35,11 @@ public class ClientRetrofit {
         }
         serviceRetrofit = retrofit.create(ServiceRetrofit.class);
     }
+/*
+    public static void loadNewsData() {
+    }*/
 
-    public void loadJSON(final InterfaceCallback interfaceCallback) {
+    public static void loadJSON(final InterfaceCallback interfaceCallback) {
         serviceRetrofit.getTopVolumeData(API)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -57,7 +60,7 @@ public class ClientRetrofit {
                 });
     }
 
-    public void loadNewsData(final NewsInterface newsInterface) {
+    public static void loadNewsData(final NewsInterface newsInterface) {
         Log.d("result", "resultthere");
 
         serviceRetrofit.getNewsData(API)

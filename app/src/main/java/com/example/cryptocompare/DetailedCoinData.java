@@ -11,14 +11,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.cryptocompare.api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.graphResponse.Data;
 import com.example.cryptocompare.graphResponse.MyPojo;
+import com.example.cryptocompare.interfaces.GraphInterface;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -255,11 +254,9 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
-
     }
 
     @Override
     public void onNothingSelected() {
-
     }
 }

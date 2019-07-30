@@ -4,15 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cryptocompare.api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.apiCallAndResponse.Example;
+import com.example.cryptocompare.interfaces.InterfaceCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,21 +41,32 @@ public class FragmentTopVolume extends Fragment {
         layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(topVolumeAdapter);
-        topVolumeAdapter.notifyDataSetChanged();
 
-        ClientRetrofit clientRetrofit = new ClientRetrofit();
-        clientRetrofit.loadJSON(new InterfaceCallback() {
+        final TopVolumeViewModel topVolumeViewModel= ViewModelProviders.of(this).get(TopVolumeViewModel.class);
+        topVolumeViewModel.get();
+
+        topVolumeViewModel.getList().observe(this, new Observer<List<Datum>>() {
             @Override
-            public void onSuccess(Example example) {
-                datumList.addAll(example.getData());
-                topVolumeAdapter.setDatumList(example.getData());
+            public void onChanged(List<Datum> data) {
+                datumList.addAll(data);
+                topVolumeAdapter.setDatumList(data);
                 topVolumeAdapter.notifyDataSetChanged();
             }
-
-            @Override
-            public void onFailure(Throwable e) {
-            }
         });
+
+//        ClientRetrofit clientRetrofit = new ClientRetrofit();
+//        clientRetrofit.loadJSON(new InterfaceCallback() {
+//            @Override
+//            public void onSuccess(Example example) {
+//                datumList.addAll(example.getData());
+//                topVolumeAdapter.setDatumList(example.getData());
+//                topVolumeAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable e) {
+//            }
+//        });
         return v;
     }
 }

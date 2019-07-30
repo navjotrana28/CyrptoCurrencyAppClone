@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cryptocompare.api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.apiCallAndResponse.Example;
+import com.example.cryptocompare.interfaces.InterfaceCallback;
 
 import java.util.ArrayList;
 import java.util.List;

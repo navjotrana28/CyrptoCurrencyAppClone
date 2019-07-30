@@ -1,21 +1,23 @@
 package com.example.cryptocompare;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cryptocompare.api.ClientRetrofit;
 import com.example.cryptocompare.newsResponse.Data;
-import com.example.cryptocompare.newsResponse.NewsResult;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static com.google.gson.reflect.TypeToken.get;
 
 
 public class FragmentNews extends Fragment {
@@ -39,16 +41,15 @@ public class FragmentNews extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(newsAdapter);
 
-        ClientRetrofit clientRetrofit = new ClientRetrofit();
-        clientRetrofit.loadNewsData(new NewsInterface() {
-            @Override
-            public void onSuccessNews(NewsResult newsResult) {
-                dataList.addAll(Arrays.asList(newsResult.getData()));
-                newsAdapter.notifyDataSetChanged();
-            }
+        MyViewModel myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
+        myViewModel.get();
 
+        myViewModel.getList().observe(this, new Observer<List<Data>>() {
             @Override
-            public void onFailure(Throwable e) {
+            public void onChanged(List<Data> data) {
+                dataList.addAll(data);
+                newsAdapter.notifyDataSetChanged();
+                Log.d("Dataget",dataList.size()+"");
             }
         });
         return v;
