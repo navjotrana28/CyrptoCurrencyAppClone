@@ -43,7 +43,9 @@ public class FragmentTopVolume extends Fragment {
         recyclerView.setAdapter(topVolumeAdapter);
 
         final TopVolumeViewModel topVolumeViewModel= ViewModelProviders.of(this).get(TopVolumeViewModel.class);
-        topVolumeViewModel.get();
+        if(topVolumeViewModel.getList().getValue() == null ) {
+            topVolumeViewModel.get();
+        }
 
         topVolumeViewModel.getList().observe(this, new Observer<List<Datum>>() {
             @Override

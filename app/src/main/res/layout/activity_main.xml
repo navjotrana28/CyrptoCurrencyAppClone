@@ -143,7 +143,7 @@
             android:layout_marginTop="50dp"
             android:minWidth="@dimen/min_width_progresbar"
             android:minHeight="@dimen/min_height_progressbar"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/insertFragmentHere" />

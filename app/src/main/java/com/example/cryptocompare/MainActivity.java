@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     following.setTextColor(getResources().getColor(R.color.colorWhite));
                     topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                     topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
-                    progressBar.setVisibility(View.GONE);
+                   // progressBar.setVisibility(View.GONE);
                     constraintfollowoing.setVisibility(View.VISIBLE);
                     constraintlayoutsearch.setVisibility(View.VISIBLE);
                     downsearchView.setVisibility(View.VISIBLE);
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 following.setTextColor(getResources().getColor(R.color.colorWhite));
                 topVolume.setBackgroundColor(getResources().getColor(R.color.colorWhite));
                 topVolume.setTextColor(getResources().getColor(R.color.colorBlack));
-                progressBar.setVisibility(View.GONE);
+               // progressBar.setVisibility(View.GONE);
                 constraintfollowoing.setVisibility(View.VISIBLE);
                 constraintlayoutsearch.setVisibility(View.VISIBLE);
                 downsearchView.setVisibility(View.VISIBLE);
