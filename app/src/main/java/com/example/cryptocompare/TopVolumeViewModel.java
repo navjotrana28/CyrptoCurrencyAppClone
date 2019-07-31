@@ -2,11 +2,9 @@ package com.example.cryptocompare;
 
 import android.app.Application;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.cryptocompare.api.ClientRetrofit;
 import com.example.cryptocompare.apiCallAndResponse.Datum;
 import com.example.cryptocompare.apiCallAndResponse.Example;
@@ -32,7 +30,8 @@ import java.util.List;
         }
 
         void get() {
-            ClientRetrofit.loadJSON(new InterfaceCallback() {
+            ClientRetrofit clientRetrofit = new ClientRetrofit();
+            clientRetrofit.loadJSON(new InterfaceCallback() {
                 @Override
                 public void onSuccess(Example example) {
                     list.setValue(example.getData());

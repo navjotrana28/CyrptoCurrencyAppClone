@@ -53,20 +53,6 @@ public class FragmentTopVolume extends Fragment {
                 topVolumeAdapter.notifyDataSetChanged();
             }
         });
-
-//        ClientRetrofit clientRetrofit = new ClientRetrofit();
-//        clientRetrofit.loadJSON(new InterfaceCallback() {
-//            @Override
-//            public void onSuccess(Example example) {
-//                datumList.addAll(example.getData());
-//                topVolumeAdapter.setDatumList(example.getData());
-//                topVolumeAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable e) {
-//            }
-//        });
         return v;
     }
 }

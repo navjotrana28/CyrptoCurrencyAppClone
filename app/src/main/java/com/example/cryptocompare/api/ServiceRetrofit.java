@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface ServiceRetrofit {
 
 
-    @GET("/data/top/totalvolfull?limit=20&tsym=USD")
+    @GET("/data/top/totalvolfull?limit=40&tsym=USD")
     Single<Example> getTopVolumeData(
 //            @Query("limit")int limit,
 //            @Query("tsym") String tsym,

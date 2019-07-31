@@ -195,8 +195,6 @@ public class DetailedCoinData extends AppCompatActivity implements View.OnClickL
             clientRetrofit.loadGraphData(time,datumList.getCoinInfo().getName(),datumList.getRAW().getUSD().getTOSYMBOL(),100,new GraphInterface() {
                 @Override
                 public void onGraphSuccess(MyPojo myPojo) {
-//                    graphDataList.addAll(Arrays.asList(myPojo.getData()));
-//                    Log.d("graphData2", String.valueOf(graphDataList.size()));
                     ArrayList<Entry> dataVal = new ArrayList<Entry>();
                     for (int i = 0; i < Arrays.asList(myPojo.getData()).size(); i++) {
                         dataVal.add(new Entry(i, Float.valueOf(Arrays.asList(myPojo.getData()).get(i).getClose())));

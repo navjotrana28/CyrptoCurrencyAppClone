@@ -47,7 +47,6 @@ public class TopVolumeAdapter extends RecyclerView.Adapter<TopVolumeAdapter.MyVi
         holder.prizeOfCoin.setText(datumList.get(position).getDISPLAY().getUSD().getPRICE());
         Picasso.get()
                 .load(HTTPS_WWW_CRYPTOCOMPARE_COM + datumList.get(position).getCoinInfo().getImageUrl())
-                .placeholder(R.drawable.ic_launcher_foreground)
                 .resize(300, 80)
                 .centerInside()
                 .into(holder.coinImage);
