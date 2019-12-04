@@ -42,7 +42,9 @@ public class FragmentNews extends Fragment {
         recyclerView.setAdapter(newsAdapter);
 
         MyViewModel myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
-        myViewModel.get();
+        if (myViewModel.getList().getValue() == null) {
+            myViewModel.get();
+        }
 
         myViewModel.getList().observe(this, new Observer<List<Data>>() {
             @Override
