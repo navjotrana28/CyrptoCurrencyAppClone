@@ -11,8 +11,7 @@ import com.example.cryptocompare.apiCallAndResponse.Example;
 import com.example.cryptocompare.interfaces.InterfaceCallback;
 import java.util.List;
 
-    class TopVolumeViewModel extends AndroidViewModel {
-
+public class TopVolumeViewModel extends AndroidViewModel {
 
         MutableLiveData<List<Datum>> getList() {
             return list;
@@ -24,14 +23,14 @@ import java.util.List;
 
         private MutableLiveData<List<Datum>>list;
 
-        public TopVolumeViewModel(@NonNull Application application) {
+    public TopVolumeViewModel(Application application) {
             super(application);
             list = new MutableLiveData<>();
         }
 
         void get() {
             ClientRetrofit clientRetrofit = new ClientRetrofit();
-            clientRetrofit.loadJSON(new InterfaceCallback() {
+            ClientRetrofit.loadJSON(new InterfaceCallback() {
                 @Override
                 public void onSuccess(Example example) {
                     list.setValue(example.getData());

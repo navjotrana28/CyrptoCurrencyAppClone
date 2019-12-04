@@ -26,7 +26,7 @@ class MyViewModel extends AndroidViewModel{
 
     private MutableLiveData<List<Data>>list;
 
-    public MyViewModel(@NonNull Application application) {
+    public MyViewModel(Application application) {
         super(application);
         list = new MutableLiveData<>();
     }
